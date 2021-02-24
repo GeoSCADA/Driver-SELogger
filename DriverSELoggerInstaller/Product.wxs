@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <Product Id="5cd4ad2d-ff74-45c5-b7f7-475f0dd88a31" Name="SELogger Driver" Language="1033" Version="1.0.0.0" 
+            Manufacturer="Schneider Electric" UpgradeCode="5cddcd57-1f62-ff15-9c92-ec69ae80ab5a">
+    <Package InstallerVersion="200" Compressed="yes" InstallPrivileges="elevated" InstallScope="perMachine" Platform="x64" />
+    <MajorUpgrade DowngradeErrorMessage="A newer or same version of SELogger Driver is already installed." />
+    <Media Id='1' Cabinet='RWS.cab' EmbedCab='yes' />
+    <Feature Id='Complete' Level='1' ConfigurableDirectory='INSTALLDIR'>
+      <ComponentRef Id="DRIVERPROCESS" />
+      <ComponentRef Id="DRIVERDLLS" />
+    </Feature>
+
+    <UI>
+    </UI>
+    
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="SchneiderElectricFolder" Name="Schneider Electric">
+          <Directory Id="INSTALLDIR" Name="ClearSCADA">
+            <Component Id="DRIVERDLLS" Guid="F48AEE65-FF95-4F43-B758-A9B27D29FA23" Win64="yes">
+              <File Id="SELogger.dll" Name="SELogger.dll" Source="..\DriverSELogger\bin\x64\Debug\SELogger.dll" />
+              <File Id="IO.Swagger.dll" Name="IO.Swagger.dll" Source="..\DriverSELogger\bin\x64\Debug\IO.Swagger.dll" />
+              <RegistryKey Root="HKLM" Key="SOFTWARE\Schneider Electric\ClearSCADA\DriverSELogger">
+                <RegistryValue Type="string" Value="SELogger"/>
+                <RegistryValue Type="string" Name="AssemblyName" Value="C:\\Program Files\\Schneider Electric\\ClearSCADA\\SELogger.dll" KeyPath="yes"/>
+                <RegistryValue Type="string" Name="TaskName" Value="DriverSELogger.exe"/>
+              </RegistryKey>              
+            </Component>
+            <Component Id="DRIVERPROCESS" Guid="944D59D3-FF9F-458E-BBC5-8DF32FEE5232" Win64="yes">
+              <File Id="DriverSELogger.exe" Name="DriverSELogger.exe" Source="..\DriverSELogger\bin\x64\Debug\DriverSELogger.exe" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Product>
+</Wix>
