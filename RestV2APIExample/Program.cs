@@ -107,7 +107,7 @@ namespace RestAPIExample
                 {
                     foreach (var stream in streams)
                     {
-                        await Console.Out.WriteLineAsync($"Found Streams: Id: {stream.Id}, Site: {stream.SiteId}, DisplayName: { stream.DisplayName}, TypeId: {stream.TypeId}, TypeDisplayName: {stream.TypeDisplayName}, Unit: {stream.Units}, Scale: {stream.ValueScale}");
+                        await Console.Out.WriteLineAsync($"Found Stream: Id: {stream.Id}, Site: {stream.SiteId}, DisplayName: { stream.DisplayName}, TypeId: {stream.TypeId}, TypeDisplayName: {stream.TypeDisplayName}, Unit: {stream.Units}, Scale: {stream.ValueScale}");
                     }
                     
                 }

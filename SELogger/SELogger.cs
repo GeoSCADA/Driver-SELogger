@@ -17,8 +17,8 @@ namespace SELogger
     {
     }
 
-    [Table("SELogger Connection", "SELogger")]
-	[EventCategory("SELoggerConnection", "SELogger Connection", OPCProperty.Base + 0)]
+    [Table("SE Logger Connection", "SELogger")]
+	[EventCategory("SELoggerConnection", "SE Logger Connection", OPCProperty.Base + 0)]
     public class SELoggerChannel : Channel
     {
         [AlarmCondition("SELoggerChannelConnectionAlarm", "SELoggerConnection", 0x03505041)]
@@ -59,20 +59,6 @@ namespace SELogger
             }
         }
 
-		// Need to modify the below if there is a change to the API version
-		[Label("API Version", 2, 3)]
-		[ConfigField("APIVersion",
-						"The version of the SELogger protocol.",
-						2, 4, OPCProperty.Base + 110)]
-		[Enum(new String[] { "2.0" })]
-		public Byte APIVersion = 0;
-
-        [Label("Organization Name", 3, 3)]
-        [ConfigField("OrganizationName",
-						"The name of the organization (blank=all available).",
-						3, 4, OPCProperty.Base + 111, Length = 80)]
-		public String OrganizationName;
-
 		[Label("Area Of Interest", 3, 1, AreaOfInterest = true)]
         [ConfigField("Area Of Interest", "Reference to the Area Of Interest in which alarms & events on this object occur.", 3, 2, 0x03600D00)]
         public override AOIReference AreaOfInterestIdBase
@@ -92,6 +78,11 @@ namespace SELogger
         {
             get { return AreaOfInterestIdBase.Name; }
         }
+
+        [Label("Read Interval", 1, 3)]
+        [ConfigField("ScanRate", "Configuration read interval.", 1, 4, 0x03505045)]
+        [Interval(IntervalType.Seconds)]
+        public UInt32 ConfigReadRate = 3600;
 
         [Label("Base URL", 4, 1)]
         [ConfigField("BaseURL",
@@ -117,15 +108,35 @@ namespace SELogger
                      5, 4, OPCProperty.Base + 55, Length = 120, Flags = FormFlags.Password)]
         public String APISecret;
 
-		[Label("Automatic Configure", 10, 1)]
+        // Need to modify the below if there is a change to the API version
+        [Label("API Version", 7, 1)]
+        [ConfigField("APIVersion",
+                        "The version of the SELogger protocol.",
+                        7, 2, OPCProperty.Base + 110)]
+        [Enum(new String[] { "2.0" })]
+        public Byte APIVersion = 0;
+
+        [Label("Organization Name", 8, 1)]
+        [ConfigField("OrganizationName",
+                        "The name of the organization (Leave blank to retrieve all available).",
+                        8, 2, OPCProperty.Base + 111, Length = 80)]
+        public String OrganizationName;
+
+        [Label("Maximum Days to Retrieve", 9, 1)]
+        [ConfigField("MaxRetrieveDays",
+                     "Maximum days to retrieve data.",
+                     9, 2, OPCProperty.Base + 112)]
+        public UInt32 MaxRetrieveDays = 28;
+        
+        [Label("Automatic Configure", 10, 1)]
         [ConfigField("AutoConfig",
-                     "Automatically configure unknown devices.",
+                     "Automatically configure unknown devices and their points.",
                      10, 2, OPCProperty.Base + 2)]
         public Boolean AutoConfig;
 
         [Label("Automatic Reconfigure", 10, 3)]
         [ConfigField("AutoReconfig",
-                     "Automatically reconfigure known devices.",
+                     "Automatically reconfigure known devices and point properties and new points.",
                      10, 4, OPCProperty.Base + 92)]
         public Boolean AutoReconfig;
 
@@ -172,7 +183,7 @@ namespace SELogger
             }
         }
 
-        [DataField("LastConfigId", "Latest unconfigured device Device Id", OPCProperty.Base + 42, ReadOnly = true, ViewInfoTitle = "Latest Device for Configuration")]
+        [DataField("LastConfigId", "Next unconfigured device Device Id", OPCProperty.Base + 42, ReadOnly = true, ViewInfoTitle = "Next Device for Configuration")]
         public Int32 LastConfigId
         {
             get
@@ -225,30 +236,28 @@ namespace SELogger
             }
             else if (Type == OPCProperty.SendRecRequestConfiguration)
             {
-                string NodeDeviceChildIdDefunct = (string)Data;
-                LogSystemEvent("SELoggerChannel", Severity, "Request for configuration initiation from: " + NodeDeviceChildIdDefunct);
-                SELoggerChannelAlarm.Raise("SELoggerChannelNewDevice", "SELogger New Device Connected: " + NodeDeviceChildIdDefunct, Severity, true);
-				// Raises an alarm which 'tells' user to check and then request config as a method action on the broker ConfigurePending
+                Int32 DeviceId = (Int32)Data;
+                LogSystemEvent("SELoggerChannel", Severity, $"Request for configuration initiation from: {DeviceId}");
+                SELoggerChannelAlarm.Raise("SELoggerChannelNewDevice", $"SELogger New Device Connected: {DeviceId}", Severity, true);
+                // Raises an alarm which 'tells' user to check and then request config as a method action on the broker ConfigurePending
+                SetDataModified(true);
             }
             else if (Type == OPCProperty.SendRecUpdateConfigQueue)
             {
-				// Commented the item below out/removed from the above action. All q items are refreshed by driver in one action whenever list changes.
-				// Save the device DeviceChildIdDefunct into a list so a user can ask for this to be configured - or rejected?
-				//Array.Resize(ref deviceBuf, deviceBuf.Length + 1);
-				//deviceBuf[deviceBuf.Length - 1] = i.uuid;
-
-				// Refresh the pending queue
+				// All q items are refreshed by driver in one action whenever list changes.
 				ConfigBuf = (Int32[])Data;
+                SetDataModified(true);
             }
             else if (Type == OPCProperty.SendRecReportConfigError)
             {
                 String Err = (String)Data;
                 SELoggerChannelAlarm.Raise("SELoggerChannelDeviceConfig", "SELogger Error configuring device: " + Err, Alarm.AlarmType.Fleeting, Severity, true);
+                SetDataModified(true);
             }
-			else if (Type == OPCProperty.SendRecLogBrokerEventText)
+            else if (Type == OPCProperty.SendRecLogChannelEventText)
 			{
 				String Message = (String)Data;
-				LogSystemEvent("SELoggerChannel", Severity, Message);
+				LogSystemEvent("SELoggerConnection", Severity, Message);
 			}
 			else
 			{
@@ -268,11 +277,21 @@ namespace SELogger
             }
         }
 
+        [Method("Configure Next Pending Device", "Configure next devices which is pending", OPCProperty.Base + 96)]
+        public void ConfigureNextPending()
+        {
+            if (ConfigBuf.Length > 0)
+            {
+                object[] ArgObject = new Object[1];
+                ArgObject[0] = ConfigBuf[0];
+                DriverAction(OPCProperty.DriverActionInitiateConfig, ArgObject, "Initiate configuration of new Device: " + ConfigBuf[0]);
+            }
+        }
 
     }
 
-    [Table("SELogger Device", "SELogger")]
-    [EventCategory("SELoggerDevice", "SELogger Device", OPCProperty.Base + 3)]
+    [Table("SE Logger Device", "SELogger")]
+    [EventCategory("SELoggerDevice", "SE Logger Device", OPCProperty.Base + 3)]
 	[EventCategory("SELoggerDeviceDbg", "SELogger Device Debug", OPCProperty.Base + 82)]
 	public class SELoggerDevice : Scanner
     {
@@ -322,11 +341,11 @@ namespace SELogger
 		public UInt32 NormalScanRate = 600;
 
 		[Label("Read Offset", 2, 3)]
-		[ConfigField("ScanOffset", "Check offset", 2, 4, 0x0350504D, Length = 32)]
+		[ConfigField("ScanOffset", "Data read offset.", 2, 4, 0x0350504D, Length = 32)]
 		public String NormalScanOffset = "M";
 
         [Label("Connection", 3, 1)]
-        [ConfigField("Channel", "Connection Reference", 3, 2, 0x03505041)]
+        [ConfigField("Channel", "Connection Reference.", 3, 2, 0x03505041)]
         public Reference<SELoggerChannel> ChannelId;
 
         [Label("Device Id", 4, 1)]
@@ -382,6 +401,42 @@ namespace SELogger
                      11, 2, OPCProperty.Base + 88, Length = 80, AlwaysOverride = true)]
         public string SerialNumber;
 
+        [Label("Firmware Version", 12, 1)]
+        [ConfigField("FirmwareVersion",
+                     "The device's firmware version.",
+                     12, 2, OPCProperty.Base + 100, Length = 80, AlwaysOverride = true)]
+        public string FirmwareVersion;
+
+        [Label("AKID", 13, 1)]
+        [ConfigField("AKID",
+                     "The device's AKID.",
+                     13, 2, OPCProperty.Base + 101, Length = 80, AlwaysOverride = true)]
+        public string AKID;
+
+        [Label("ICCID", 14, 1)]
+        [ConfigField("ICCID",
+                     "The device's ICCID.",
+                     14, 2, OPCProperty.Base + 102, Length = 80, AlwaysOverride = true)]
+        public string ICCID;
+
+        [Label("ICCID2", 15, 1)]
+        [ConfigField("ICCID2",
+                     "The device's ICCID2.",
+                     15, 2, OPCProperty.Base + 103, Length = 80, AlwaysOverride = true)]
+        public string ICCID2;
+
+        [Label("MEID", 16, 1)]
+        [ConfigField("MEID",
+                     "The device's MEID.",
+                     16, 2, OPCProperty.Base + 104, Length = 80, AlwaysOverride = true)]
+        public string MEID;
+
+
+        [DataField("Last Data Time",
+           "The date/time of the last retrieved value, values older than this will not be retrieved.",
+           OPCProperty.Base + 97, ViewInfoTitle = "Last retrieved date")]
+        public DateTime LastDataTime = DateTime.UtcNow.AddDays(-366); // Default to a year ago, this is brought forward by the channel property MaxRetrieveDays.
+
         [DataField("Last Error",
                    "The text of the last error.",
                    OPCProperty.Base + 7, ViewInfoTitle = "Last Error")]
@@ -411,23 +466,19 @@ namespace SELogger
             // Set scanner alarm
             else if (Type == OPCProperty.SendRecRaiseScannerAlarm)
             {
-                SELoggerScannerAlarm.Raise("SELoggerCommLWT", "SELoggerCommError: Offline Last Will Received", Severity, true);
+                SELoggerScannerAlarm.Raise("SELoggerCommLWT", "SELoggerCommError: Offline Received", Severity, true);
                 SetDataModified(true);
             }
-			// Recieve Birth data (configuration) for known device
-			else if (Type == OPCProperty.SendRecProcessBCStatus)
+			// Recieve checksum data (configuration) for known device
+			else if (Type == OPCProperty.SendRecSetChecksum)
             {
 				// Data is a config string
 				ConfigChecksum = (String)(Data);
-
-				LogSystemEvent("SELoggerDevice", Severity, "Received device and point configuration.");
+				LogSystemEvent("SELoggerDevice", Severity, "Received device and point configuration checksum.");
 
 				// Scanner good, Clear alarm
 				SELoggerScannerAlarm.Clear();
 				SetDataModified(true);
-
-                // Unused
-				Reply = "OK";
 			}
 			else if (Type == OPCProperty.SendRecFDProtocolError)
             {
@@ -440,13 +491,22 @@ namespace SELogger
 				String Message = (String)Data;
 				LogSystemEvent("SELoggerDevice", Severity, Message);
 			}
-			else
-				base.OnReceive(Type, Data, ref Reply);
+            else if (Type == OPCProperty.SendRecUpdateLastDataTime)
+            {
+                LastDataTime = (DateTime)Data;
+                SetDataModified(true);
+            }
+            else if (Type == OPCProperty.SendRecGetLastDataTime)
+            {
+                Reply = LastDataTime;
+            }
+            else
+                base.OnReceive(Type, Data, ref Reply);
         }
 
 	}
 
-    [Table("SELogger Digital", "SELogger")]
+    [Table("SE Logger Digital", "SELogger")]
 	public class SELoggerPointDg : DigitalPoint
 	{
         // Derived configuration field
@@ -502,13 +562,14 @@ namespace SELogger
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
-        [Label("Type Id", 9, 1)]
-		[ConfigField("TypeId", "Point Type Number", 9, 2, OPCProperty.Base + 72, DefaultOverride = true)]
-		public Int32 TypeId;
+        [Label("Type Id", 10, 1)]
+        [ConfigField("TypeId", "Point Type Number", 10, 2, OPCProperty.Base + 72, DefaultOverride = true)]
+        public Int32 TypeId;
 
-        [Label("Type Name", 9, 3)]
-        [ConfigField("LoggerTypeName", "Point Type Name", 9, 4, OPCProperty.Base + 91, DefaultOverride = true)]
+        [Label("Type Name", 10, 3)]
+        [ConfigField("LoggerTypeName", "Point Type Name", 10, 4, OPCProperty.Base + 91, Length = 25, DefaultOverride = true)]
         public string LoggerTypeName;
+
 
         // Group of configuration fields
         // Normally an attribute on the first config field of the group
@@ -592,7 +653,7 @@ namespace SELogger
 	}
 
 
-	[Table("SELogger Analogue", "SELogger")]
+	[Table("SE Logger Analogue", "SELogger")]
 	public class SELoggerPointAg : AnaloguePoint
 	{
         // Derived configuration field
@@ -648,12 +709,12 @@ namespace SELogger
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
-        [Label("Type Id", 9, 1)]
-        [ConfigField("TypeId", "Point Type Number", 9, 2, OPCProperty.Base + 72, DefaultOverride = true)]
+        [Label("Type Id", 10, 1)]
+        [ConfigField("TypeId", "Point Type Number", 10, 2, OPCProperty.Base + 72, DefaultOverride = true)]
         public Int32 TypeId;
 
-        [Label("Type Name", 9, 3)]
-        [ConfigField("LoggerTypeName", "Point Type Name", 9, 4, OPCProperty.Base + 91, DefaultOverride = true)]
+        [Label("Type Name", 10, 3)]
+        [ConfigField("LoggerTypeName", "Point Type Name", 10, 4, OPCProperty.Base + 91, Length = 25, DefaultOverride = true)]
         public string LoggerTypeName;
 
         // Group of configuration fields
@@ -737,7 +798,7 @@ namespace SELogger
 	}
 
 
-	[Table("SELogger Time", "SELogger")]
+	[Table("SE Logger Time", "SELogger")]
 	public class SELoggerPointTm : TimePoint
 	{
 		// Derived configuration field
@@ -793,12 +854,12 @@ namespace SELogger
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
-        [Label("Type Id", 9, 1)]
-        [ConfigField("TypeId", "Point Type Number", 9, 2, OPCProperty.Base + 72, DefaultOverride = true)]
+        [Label("Type Id", 10, 1)]
+        [ConfigField("TypeId", "Point Type Number", 10, 2, OPCProperty.Base + 72, DefaultOverride = true)]
         public Int32 TypeId;
 
-        [Label("Type Name", 9, 3)]
-        [ConfigField("LoggerTypeName", "Point Type Name", 9, 4, OPCProperty.Base + 91, DefaultOverride = true)]
+        [Label("Type Name", 10, 3)]
+        [ConfigField("LoggerTypeName", "Point Type Name", 10, 4, OPCProperty.Base + 91, Length = 25, DefaultOverride = true)]
         public string LoggerTypeName;
 
         // Group of configuration fields
@@ -881,7 +942,7 @@ namespace SELogger
 		}
 	}
 
-	[Table("SELogger Counter", "SELogger")]
+	[Table("SE Logger Counter", "SELogger")]
 	public class SELoggerPointCi : CounterPoint
 	{
 		// Derived configuration field
@@ -937,12 +998,12 @@ namespace SELogger
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
-        [Label("Type Id", 9, 1)]
-        [ConfigField("TypeId", "Point Type Number", 9, 2, OPCProperty.Base + 72, DefaultOverride = true)]
+        [Label("Type Id", 10, 1)]
+        [ConfigField("TypeId", "Point Type Number", 10, 2, OPCProperty.Base + 72, DefaultOverride = true)]
         public Int32 TypeId;
 
-        [Label("Type Name", 9, 3)]
-        [ConfigField("LoggerTypeName", "Point Type Name", 9, 4, OPCProperty.Base + 91, DefaultOverride = true)]
+        [Label("Type Name", 10, 3)]
+        [ConfigField("LoggerTypeName", "Point Type Name", 10, 4, OPCProperty.Base + 91, Length = 25, DefaultOverride = true)]
         public string LoggerTypeName;
 
 

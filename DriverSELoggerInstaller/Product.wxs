@@ -19,10 +19,22 @@
           <Directory Id="INSTALLDIR" Name="ClearSCADA">
             <Component Id="DRIVERDLLS" Guid="F48AEE65-FF95-4F43-B758-A9B27D29FA23" Win64="yes">
               <File Id="SELogger.dll" Name="SELogger.dll" Source="..\DriverSELogger\bin\x64\Debug\SELogger.dll" />
+              
               <File Id="IO.Swagger.dll" Name="IO.Swagger.dll" Source="..\DriverSELogger\bin\x64\Debug\IO.Swagger.dll" />
+
+              <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="..\DriverSELogger\bin\x64\Debug\Newtonsoft.Json.dll" />
+              <File Id="RestSharp.dll" Name="RestSharp.dll" Source="..\DriverSELogger\bin\x64\Debug\RestSharp.dll" />
+              <File Id="Microsoft.IdentityModel.JsonWebTokens.dll" Name="Microsoft.IdentityModel.JsonWebTokens.dll" Source="..\DriverSELogger\bin\x64\Debug\Microsoft.IdentityModel.JsonWebTokens.dll" />
+              <File Id="Microsoft.IdentityModel.Logging.dll" Name="Microsoft.IdentityModel.Logging.dll" Source="..\DriverSELogger\bin\x64\Debug\Microsoft.IdentityModel.Logging.dll" />
+              <File Id="Microsoft.IdentityModel.Tokens.dll" Name="Microsoft.IdentityModel.Tokens.dll" Source="..\DriverSELogger\bin\x64\Debug\Microsoft.IdentityModel.Tokens.dll" />
+              <File Id="System.Buffers.dll" Name="System.Buffers.dll" Source="..\DriverSELogger\bin\x64\Debug\System.Buffers.dll" />
+              <File Id="System.IdentityModel.Tokens.Jwt.dll" Name="System.IdentityModel.Tokens.Jwt.dll" Source="..\DriverSELogger\bin\x64\Debug\System.IdentityModel.Tokens.Jwt.dll" />
+              <File Id="System.Net.Http.dll" Name="System.Net.Http.dll" Source="..\DriverSELogger\bin\x64\Debug\System.Net.Http.dll" />
+              <File Id="System.Runtime.CompilerServices.Unsafe.dll" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="..\DriverSELogger\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
+
               <RegistryKey Root="HKLM" Key="SOFTWARE\Schneider Electric\ClearSCADA\DriverSELogger">
                 <RegistryValue Type="string" Value="SELogger"/>
-                <RegistryValue Type="string" Name="AssemblyName" Value="C:\\Program Files\\Schneider Electric\\ClearSCADA\\SELogger.dll" KeyPath="yes"/>
+                <RegistryValue Type="string" Name="AssemblyName" Value="C:\Program Files\Schneider Electric\ClearSCADA\SELogger.dll" KeyPath="yes"/>
                 <RegistryValue Type="string" Name="TaskName" Value="DriverSELogger.exe"/>
               </RegistryKey>              
             </Component>

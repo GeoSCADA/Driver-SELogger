@@ -18,7 +18,7 @@ namespace SELogger
 		public const UInt32 SendRecRequestConfiguration = OPCProperty.Base + 31;
 		public const UInt32 SendRecUpdateConfigQueue = OPCProperty.Base + 40;
 		public const UInt32 SendRecReportConfigError = OPCProperty.Base + 56;
-		public const UInt32 SendRecLogBrokerEventText = OPCProperty.Base + 79;
+		public const UInt32 SendRecLogChannelEventText = OPCProperty.Base + 79;
 		// Actions
 		public const UInt32 DriverActionInitiateConfig = OPCProperty.Base + 33;
 
@@ -26,10 +26,12 @@ namespace SELogger
 		// RendRecs
 		public const UInt32 SendRecClearScannerAlarm = OPCProperty.Base + 12;
 		public const UInt32 SendRecRaiseScannerAlarm = OPCProperty.Base + 13;
-		public const UInt32 SendRecProcessBCStatus = OPCProperty.Base + 14;
+		public const UInt32 SendRecSetChecksum = OPCProperty.Base + 14;
 		public const UInt32 SendRecProcessDeviceConfig = OPCProperty.Base + 30;
 		public const UInt32 SendRecFDProtocolError = OPCProperty.Base + 43;
 		public const UInt32 SendRecLogFDEventText = OPCProperty.Base + 80;
+		public const UInt32 SendRecUpdateLastDataTime = OPCProperty.Base + 98;
+		public const UInt32 SendRecGetLastDataTime = OPCProperty.Base + 99;
 
 	}
 

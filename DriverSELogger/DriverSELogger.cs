@@ -141,17 +141,12 @@ namespace DriverSELogger
 		// Access token
 		public string tokenStr = "";
 
-		// Last known online state
-		//private bool LastKnownOnline = false;
-		// Last known connection state
-		private bool LastKnownConnect = false;
-
 		public void LogAndEvent( string Message)
 		{
 			Log(Message);
 			if (this.DBChannel.EnhancedEvents)
 			{
-				App.SendReceiveObject(this.DBChannel.Id, OPCProperty.SendRecLogBrokerEventText, Message);
+				App.SendReceiveObject(this.DBChannel.Id, OPCProperty.SendRecLogChannelEventText, Message);
 			}
 		}
 
@@ -171,7 +166,8 @@ namespace DriverSELogger
 			base.OnConnect();
 
 			// Make a connection to get the API Key
-			ServerStatus ss = DoConnect();
+			ServerStatus ss = DoConnect(); 
+
             if (ss == ServerStatus.Offline)
             {
                 LogAndEvent("Failed to connect.");
@@ -179,31 +175,13 @@ namespace DriverSELogger
             }
             else
             {
-                LastKnownConnect = true;
                 LogAndEvent("OnConnect Channel Online.");
             }
             Log("Channel OnConnect(): End");
         }
 
-        public override void OnPoll()
-        {
-            // Defaults to 30 seconds.
-            Log("OnPoll");
-            // No need to call base class. Return exception on failure of connection
-            if (true) // Need this to poll for data
-            {
-                if (LastKnownConnect == true)
-                {
-                    SetStatus(ServerStatus.Offline, "Cannot connect");
-                    SetFailReason("Could not open connection. ");
-                    LastKnownConnect = false;
-                    LogAndEvent("OnPoll: Cannot connect.");
-                    throw new System.Runtime.InteropServices.COMException("Connection unsuccessful.");
-                }
-            }
-        }
 
-        public override void OnDisconnect()
+		public override void OnDisconnect()
         {
 			// No actions to be taken for web api
             Log("Channel OnDisConnect(): Start");
@@ -224,22 +202,32 @@ namespace DriverSELogger
             Log("Channel OnUndefine(): End");
         }
 
-		// Called on (re)connection - get the access token into tokenStr
-		private ServerStatus DoConnect()
-        {
-            Log("Channel doConnect(): Call Conn...");
+		// Last poll time defined as weeks ago, so first poll always happens
+		private DateTime LastPollTime = DateTime.UtcNow.AddDays(-100);
+
+		public override void OnPoll()
+		{
+			LogAndEvent("Channel OnPoll");
+			// Defaults to 30 seconds, but we will use the channel ConfigReadRate property (seconds).
+			if (LastPollTime.AddSeconds(DBChannel.ConfigReadRate) > DateTime.UtcNow)
+			{
+				return;
+			}
+			LastPollTime = DateTime.UtcNow;
+
+			// No need to call base class. Return exception on failure of connection
 			Configuration.Default.BasePath = DBChannel.BaseURL;
 
 			var tokenTask = RestAPITools.FetchOrValidateAccessToken(DBChannel.AuthURL, DBChannel.APIKey, DBChannel.APISecret);
 			tokenTask.Wait();
 			tokenStr = tokenTask.Result;
 
-            Log("Channel doConnect(): " + tokenStr);
+			Log("Channel OnPoll(): " + tokenStr);
 			if (tokenStr != "")
-			{ 
-                LogAndEvent("Channel doConnect() set Connected");
+			{
+				LogAndEvent("Channel OnPoll() set Connected");
 
-                SetStatus(ServerStatus.Online, "Connected");
+				SetStatus(ServerStatus.Online, "Connected");
 
 				// If an organisation is specified on the channel
 				int organizationId = 0;
@@ -298,11 +286,38 @@ namespace DriverSELogger
 						{
 							if (device.SiteId == site.Id)
 							{
-								ReadDeviceConfig( (int)device.SiteId, site, device);
+								ReadDeviceConfig((int)device.Id, site, device);
 							}
 						}
 					}
 				}
+			}
+			else
+			{
+				LogAndEvent("Channel OnPoll(): Set Status Offline");
+				SetFailReason("Could not open connection.");
+
+				SetStatus(ServerStatus.Offline, "Cannot connect");
+			}
+		}
+
+		// Called on (re)connection - get the access token into tokenStr
+		private ServerStatus DoConnect()
+        {
+			// We connect up here to get the token, and fail the channel if we don't get it
+			// We do it again and get actual data in the OnPoll
+            Log("Channel doConnect(): Call Conn...");
+			Configuration.Default.BasePath = DBChannel.BaseURL;
+
+			var tokenTask = RestAPITools.FetchOrValidateAccessToken(DBChannel.AuthURL, DBChannel.APIKey, DBChannel.APISecret);
+			tokenTask.Wait();
+			tokenStr = tokenTask.Result;
+
+            Log("Channel doConnect() token: " + tokenStr);
+			if (tokenStr != "")
+			{ 
+                LogAndEvent("Channel doConnect() set Connected");
+                SetStatus(ServerStatus.Online, "Connected");
 
 				// Alarm Clear
 				//Log("Channel doConnect(): SendReceive to Clear Alarm");
@@ -317,8 +332,6 @@ namespace DriverSELogger
             }
             else
             {
-                Log("Channel doConnect(): false");
-
                 LogAndEvent("Channel doConnect(): Set Status Offline");
                 SetFailReason("Could not open connection.");
 
@@ -365,30 +378,36 @@ namespace DriverSELogger
             }
         }
 
-		private void ReadDeviceConfig(int SiteID, StoredSiteResponse site, StoredDeviceResponse device)
+		private void ReadDeviceConfig(int DeviceID, StoredSiteResponse site, StoredDeviceResponse device)
 		{
 			// 
 			// Get streams configured for this device/site
 			LogAndEvent("Get Streams");
-			var streamsTask = new StreamApi().StreamGetStreamsBySiteAsync(SiteID, $"Bearer {tokenStr}");
-			streamsTask.Wait();
-			var streams = streamsTask.Result;
-
-			if (streams != null && streams.Count > 0)
+			try
 			{
-				foreach (var stream in streams)
+				var streamsTask = new StreamApi().StreamGetStreamsBySiteAsync((int)site.Id, $"Bearer {tokenStr}");
+				streamsTask.Wait();
+				var streams = streamsTask.Result;
+
+				if (streams != null && streams.Count > 0)
 				{
-					LogAndEvent($"Found Streams: Id: {stream.Id}, Site: {stream.SiteId}, DisplayName: { stream.DisplayName}, TypeId: {stream.TypeId}, TypeDisplayName: {stream.TypeDisplayName}, Unit: {stream.Units}, Scale: {stream.ValueScale}");
+					foreach (var stream in streams)
+					{
+						LogAndEvent($"Found Stream: Id: {stream.Id}, Site: {stream.SiteId}, DisplayName: { stream.DisplayName}, TypeId: {stream.TypeId}, TypeDisplayName: {stream.TypeDisplayName}, Unit: {stream.Units}, Scale: {stream.ValueScale}");
+					}
+					StartDevice(DeviceID, site, device, streams);
 				}
-				StartDevice(SiteID, site, device, streams);
 			}
-			// No streams no device.
+			catch (Exception e)
+			{
+				// No streams no device.
+				LogAndEvent($"Cannot read streams for device {DeviceID} site {site.Id}: {e.Message}");
+			}
 		}
 
 		// A device has been found
 		private void StartDevice(Int32 DeviceId, StoredSiteResponse siteConfig, StoredDeviceResponse deviceConfig, StreamStoredStreamResponseCollection streamConfig)
         {
-			LogAndEvent("ProcessInStatus");
 
 			LogAndEvent("Start Device: " + DeviceId.ToString());
 
@@ -411,7 +430,7 @@ namespace DriverSELogger
 				if (ConfigChecksum != FD.DBScanner.ConfigChecksum)
 				{
 					FD.LogAndEvent("Received newer configuration");
-					if (DBChannel.AutoConfig)
+					if (DBChannel.AutoReconfig)
 					{
 						FD.LogAndEvent("Update configuration");
 						HandleNewConfig(siteConfig, deviceConfig, streamConfig, FD);
@@ -424,7 +443,7 @@ namespace DriverSELogger
 
 				object ReplyObject = "";
 				// Add Device and Point data into one for the SendReceive?
-				App.SendReceiveObject(FD.DBScanner.Id, OPCProperty.SendRecProcessBCStatus, ConfigChecksum, ref ReplyObject);
+				App.SendReceiveObject(FD.DBScanner.Id, OPCProperty.SendRecSetChecksum, ConfigChecksum, ref ReplyObject);
 
 			}
 			else
@@ -446,15 +465,15 @@ namespace DriverSELogger
 		
 		private string CalcConfigChecksum(StoredSiteResponse site, StoredDeviceResponse device, StreamStoredStreamResponseCollection streams)
 		{
-			string configData = ($"Found Site, Id: { site.Id}, Account Org Id: {site.AccountOrganizationId}, Status {site.Status}, DisplayName: { site.DisplayName}");
+			string configData = ($"{site.Id},{site.AccountOrganizationId},{site.DisplayName}");
 
-			configData += $"Found Device Id: {device.Id}, DisplayName {device.DisplayName}, Site Id: {device.SiteId}, Model: { device.ModelNumber}, Serial: { device.SerialNumber}";
+			configData += $"{device.Id},{device.DisplayName},{device.SiteId},{device.ModelNumber},{device.SerialNumber},{device.FirmwareVersion},{device.Akid},{device.Iccid},{device.Iccid2},{device.Meid}";
 
 			if (streams != null && streams.Count > 0)
 			{
 				foreach (var stream in streams)
 				{
-					configData += $"Found Streams: Id: {stream.Id}, Site: {stream.SiteId}, DisplayName: { stream.DisplayName}, TypeId: {stream.TypeId}, TypeDisplayName: {stream.TypeDisplayName}, Unit: {stream.Units}, Scale: {stream.ValueScale}";
+					configData += $"{stream.Id},{stream.SiteId},{stream.DisplayName},{stream.TypeId},{stream.TypeDisplayName},{stream.Units},{stream.ValueScale}";
 				}
 
 			}
@@ -479,7 +498,7 @@ namespace DriverSELogger
 
 		private void CheckReadyInitiateConfig(Int32 DeviceId, ConfigItem thisItem)
         {
-            // Do we have all 3 properties? Only check when Config is received.
+            // Do we have all properties? Only check when Config is received.
             if (thisItem.Ready())
             {
                 // Allow this to be auto-configured if the broker configuration permits it.
@@ -511,29 +530,6 @@ namespace DriverSELogger
                 RefreshPendingQueue();
             }
         }
-
-
-#pragma warning disable IDE0051 // Remove unused private members
-		private void ProcessInData(Int32 DeviceId, SampleGetSamplesScalarBatchResponseBody data)
-#pragma warning restore IDE0051 // Remove unused private members
-		{
-            LogAndEvent("ProcessInData");
-			if (DeviceIndex.TryGetValue(DeviceId, out DrvCSScanner FD))
-			{
-				// Any data?
-				if (data?.Samples == null)
-				{
-					FD.LogAndEvent("Empty data message. ");
-					return;
-				}
-				FD.LogAndEvent("Interpreted data Payload has data. ");
-				FD.ProcessMetrics(data);
-			}
-			else
-			{
-				LogAndEvent("Cannot find device for this Data. " + DeviceId);
-			}
-		}
 
 
 		public override void OnExecuteAction(ClearSCADA.DriverFramework.DriverTransaction Transaction)
@@ -676,152 +672,172 @@ namespace DriverSELogger
 			// Need to query all devices on this channel by DeviceId
 			// Enclose scope so the same names can be used
 			string sql = "SELECT Id, Fullname FROM SELoggerDevice WHERE ChannelId = " + DBChannel.Id.ToString() + 
-							" AND DeviceId = '" + DeviceId + "'";
-			if ( QueryDatabaseForId(AdvConnection, sql) > 0)
-			{ 
-				ErrorText = ("A device with this Device Id exists: " + DeviceId);
-				return false;
+							" AND DeviceId = " + DeviceId + "";
+			int DBDeviceId = QueryDatabaseForId(AdvConnection, sql);
+			if (DBDeviceId > 0)
+			{
+				LogAndEvent( $"A device with this Device Id exists: {DeviceId} Row: {DBDeviceId}" );
+				// Perhaps should not be here, but continue to find device
+				try
+				{
+					FieldDevice = connection.GetObject((ClearScada.Client.ObjectId)(int)DBChannel.ConfigGroupId.Id);
+				}
+				catch
+				{
+					LogAndEvent("Can not (re)find device.");
+					ErrorText = "Can not find a device but query did";
+					return false;
+				}
+				LogAndEvent($"Found existing device, AutoReconfig={DBChannel.AutoReconfig}");
+				if (!DBChannel.AutoReconfig)
+				{
+					ErrorText = "";
+					return true;
+				}
 			}
 			else
 			{
 				LogAndEvent("No existing device found - proceeding to create: " + DeviceId);
-			}
 
 
-			//////////////////////////////////////////////////////////////////////////////////
-			// Construct name of instance from the Configuration
-			// If this is a device, then name is <ConfigGroupId>.<GSDeviceName>.Device
+				//////////////////////////////////////////////////////////////////////////////////
+				// Construct name of instance from the Configuration
+				// If this is a device, then name is <ConfigGroupId>.<GSDeviceName>.Device
 
-			// Could also filter other invalid characters. Used for devices too, if no template.
-			LogAndEvent("Configure device: " + DeviceId + " as " + GSDeviceName);
+				// Could also filter other invalid characters. Used for devices too, if no template.
+				LogAndEvent("Configure device: " + DeviceId + " as " + GSDeviceName);
 
-			//////////////////////////////////////////////////////////////////////////////////
-			// Group to contain instances or field device object groups
-			ClearScada.Client.Simple.DBObject InstanceGroup;
-			if (DBChannel.ConfigGroupId.Id <= 0)
-			{
-				ErrorText = ("Invalid channel instance group configuration.");
-				return false;
-			}
-			try
-			{
-				InstanceGroup = connection.GetObject((ClearScada.Client.ObjectId)(int)DBChannel.ConfigGroupId.Id);
-				LogAndEvent("Instance group. " + InstanceGroup.FullName);
-			}
-			catch
-			{
-				ErrorText = ("Invalid Configuration group. ");
-				return false;
-			}
-
-			//////////////////////////////////////////////////////////////////////////////////
-			// Read the template information from the channel
-			// Use unchecked type conversion as there are differences in DDK library vs Client library in handling object ids
-			Int32 TemplateId = unchecked((int)DBChannel.TemplateId.Id);
-			if (TemplateId > 0)
-			{
+				//////////////////////////////////////////////////////////////////////////////////
+				// Group to contain instances or field device object groups
+				ClearScada.Client.Simple.DBObject InstanceGroup;
+				if (DBChannel.ConfigGroupId.Id <= 0)
+				{
+					ErrorText = ("Invalid channel instance group configuration.");
+					return false;
+				}
 				try
 				{
-					// Read the Template
-					ClearScada.Client.Simple.DBObject DeviceTemplate = connection.GetObject(TemplateId);
-					LogAndEvent("Device Template: " + DeviceTemplate.FullName);
+					InstanceGroup = connection.GetObject((ClearScada.Client.ObjectId)(int)DBChannel.ConfigGroupId.Id);
+					LogAndEvent("Instance group. " + InstanceGroup.FullName);
 				}
 				catch
 				{
-					LogAndEvent("Cannot read Device Template.");
-					TemplateId = 0;
-				}
-			}
-			else
-			{
-				LogAndEvent("No Device template configured.");
-				TemplateId = 0;
-			}
-
-			//////////////////////////////////////////////////////////////////////////////////
-			// Create instance or group with suggested name
-			LogAndEvent("Trying to create instance or group.");
-			if (TemplateId > 0)
-			{
-				LogAndEvent("Valid TemplateId");
-				ObjectId CSTemplateId = new ObjectId(TemplateId);
-
-				// Create Instance
-				try
-				{
-						Instance = connection.CreateInstance(CSTemplateId, InstanceGroup.Id, GSDeviceName);
-				}
-				catch (Exception Fail)
-				{
-					ErrorText = ("Error creating device template instance. " + Fail.Message);
-					// This could raise an alarm - there should not be an object with this name.
+					ErrorText = ("Invalid Configuration group. ");
 					return false;
 				}
-				// Now find the FD associated with this template
-				// Find the FD - assumed to be a direct child of the instance
-				ClearScada.Client.Simple.DBObjectCollection fds = Instance.GetChildren("", "");
-				bool Found = false;
-				foreach (ClearScada.Client.Simple.DBObject o in fds)
+
+				//////////////////////////////////////////////////////////////////////////////////
+				// Read the template information from the channel
+				// Use unchecked type conversion as there are differences in DDK library vs Client library in handling object ids
+				Int32 TemplateId = unchecked((int)DBChannel.TemplateId.Id);
+				if (TemplateId > 0)
 				{
-					if (o.ClassDefinition.Name == "SELoggerDevice")
+					try
 					{
-						// This is an FD - assume only one
-						Found = true;
-						LogAndEvent("Found FD: " + o.FullName);
-						FieldDevice = o;
-						break;
+						// Read the Template
+						ClearScada.Client.Simple.DBObject DeviceTemplate = connection.GetObject(TemplateId);
+						LogAndEvent("Device Template: " + DeviceTemplate.FullName);
+					}
+					catch
+					{
+						LogAndEvent("Cannot read Device Template.");
+						TemplateId = 0;
 					}
 				}
-				if (!Found)
+				else
 				{
-					ErrorText = ("No FD found as child of Template instance.");
+					LogAndEvent("No Device template configured.");
+					TemplateId = 0;
+				}
+
+				//////////////////////////////////////////////////////////////////////////////////
+				// Create instance or group with suggested name
+				LogAndEvent("Trying to create instance or group.");
+				if (TemplateId > 0)
+				{
+					LogAndEvent("Valid TemplateId");
+					ObjectId CSTemplateId = new ObjectId(TemplateId);
+
+					// Create Instance
+					try
+					{
+						Instance = connection.CreateInstance(CSTemplateId, InstanceGroup.Id, GSDeviceName);
+					}
+					catch (Exception Fail)
+					{
+						ErrorText = ("Error creating device template instance. " + Fail.Message);
+						// This could raise an alarm - there should not be an object with this name.
+						return false;
+					}
+					// Now find the FD associated with this template
+					// Find the FD - assumed to be a direct child of the instance
+					ClearScada.Client.Simple.DBObjectCollection fds = Instance.GetChildren("", "");
+					bool Found = false;
+					foreach (ClearScada.Client.Simple.DBObject o in fds)
+					{
+						if (o.ClassDefinition.Name == "SELoggerDevice")
+						{
+							// This is an FD - assume only one
+							Found = true;
+							LogAndEvent("Found FD: " + o.FullName);
+							FieldDevice = o;
+							break;
+						}
+					}
+					if (!Found)
+					{
+						ErrorText = ("No FD found as child of Template instance.");
+						return false;
+					}
+				}
+				//////////////////////////////////////////////////////////////////////////////////
+				// Not templated
+				else
+				{
+					// There is no template for this profile, so create FD in a group directly
+					// Not an instance, but using that object ref
+					LogAndEvent("Create group directly.");
+					try
+					{
+						Instance = connection.CreateObject("CGroup", InstanceGroup.Id, GSDeviceName);
+					}
+					catch (Exception Failure)
+					{
+						// Possible to consider continuing here, keep this group and add FD to it.
+						ErrorText = "Error creating Group, may already exist - cannot create field device. " + Failure.Message;
+						return false;
+					}
+					// Create field device
+					try
+					{
+						string FDName = "Logger";
+						FieldDevice = connection.CreateObject("SELoggerDevice", Instance.Id, FDName);
+					}
+					catch (Exception Failure)
+					{
+						ErrorText = "Error creating Logger, may already exist. " + Failure.Message;
+						return false;
+					}
+				}
+				// Done Creating Field Device etc.
+
+				//////////////////////////////////////////////////////////////////////////////////
+				// Set field device properties
+				// Start with device. Checkset returns false if failed, 
+				// but we will ignore some failures as the property may be already set appropriately in the template
+
+				if (!CheckSet(FieldDevice, "DeviceId", DeviceId))
+				{
+					ErrorText = "Error writing device DeviceId.";
+					return false;
+				}
+
+				if (!CheckSet(FieldDevice, "ChannelId", this.DBChannel.Id))
+				{
+					ErrorText = "Error writing device ChannelId.";
 					return false;
 				}
 			}
-			//////////////////////////////////////////////////////////////////////////////////
-			// Not templated
-			else
-			{
-				// There is no template for this profile, so create FD in a group directly
-				// Not an instance, but using that object ref
-				LogAndEvent("Create group directly.");
-				try
-				{
-					Instance = connection.CreateObject("CGroup", InstanceGroup.Id, GSDeviceName);
-				}
-				catch (Exception Failure)
-				{
-					// Possible to consider continuing here, keep this group and add FD to it.
-					ErrorText = "Error creating Group, may already exist - cannot create field device. " + Failure.Message;
-					return false;
-				}
-				// Create field device
-				try
-				{
-					string FDName = "Logger";
-					FieldDevice = connection.CreateObject("SELoggerDevice", Instance.Id, FDName); 
-				}
-				catch (Exception Failure)
-				{
-					ErrorText = "Error creating Logger, may already exist. " + Failure.Message;
-					return false;
-				}
-			}
-			// Done Creating Field Device etc.
-
-			//////////////////////////////////////////////////////////////////////////////////
-			// Set field device properties
-			// Start with device. Checkset returns false if failed, 
-			// but we will ignore some failures as the property may be already set appropriately in the template
-
-			if (! CheckSet( FieldDevice, "DeviceId", DeviceId) )
-			{
-				ErrorText = "Error writing device DeviceId.";
-				return false;
-			}
-
-			CheckSet( FieldDevice, "ChannelId", this.DBChannel.Id);
-
 
 			// Set properties function
 			bool status = ReconfigureDeviceAndChildren(Site, Dev, Points, FieldDevice, connection, AdvConnection, out ErrorText);
@@ -835,7 +851,7 @@ namespace DriverSELogger
 			object ReplyObject = Reply;
 			LogAndEvent("Send/receive on-Connection config info");
 			string ConfigChecksum = CalcConfigChecksum( Site, Dev, Points);
-			App.SendReceiveObject((uint)FieldDevice.Id.ToInt32(), OPCProperty.SendRecProcessBCStatus, ConfigChecksum, ref ReplyObject); // Birth data.
+			App.SendReceiveObject((uint)FieldDevice.Id.ToInt32(), OPCProperty.SendRecSetChecksum, ConfigChecksum, ref ReplyObject); // Birth data.
 
 			//if good
 			ErrorText = "";
@@ -855,13 +871,27 @@ namespace DriverSELogger
 
 			// Set device properties
 			LogAndEvent($"Found Site, Id: { site.Id}, Account Org Id: {site.AccountOrganizationId}, Status {site.Status}, DisplayName: { site.DisplayName}");
-			CheckSet(FieldDevice, "AccountOrganizationId", (Int32)site.AccountOrganizationId);
+			CheckSet(FieldDevice, "SiteId", site.Id);
 			CheckSet(FieldDevice, "SiteDisplayName", site.DisplayName);
+			if (site.AccountOrganizationId is null)
+			{
+				Log("AccountOrganizationId is null");
+			}
+			else
+			{
+				CheckSet(FieldDevice, "AccountOrganizationId", (Int32)site.AccountOrganizationId);
+			}
 
 			LogAndEvent($"Found Device Id: {device.Id}, DisplayName {device.DisplayName}, Site Id: {device.SiteId}, Model: { device.ModelNumber}, Serial: { device.SerialNumber}");
 			CheckSet(FieldDevice, "DeviceDisplayName", device.DisplayName);
 			CheckSet(FieldDevice, "ModelNumber", device.ModelNumber);
 			CheckSet(FieldDevice, "SerialNumber", device.SerialNumber);
+
+			CheckSet(FieldDevice, "FirmwareVersion", device.FirmwareVersion);
+			CheckSet(FieldDevice, "AKID", device.Akid);
+			CheckSet(FieldDevice, "ICCID", device.Iccid);
+			CheckSet(FieldDevice, "ICCID2", device.Iccid2);
+			CheckSet(FieldDevice, "MEID", device.Meid);
 
 			// Create points
 			// 
@@ -873,7 +903,7 @@ namespace DriverSELogger
 					// In single quotes as this is used in SQL
 					string csType = "'SELoggerPointAg'";
 
-					LogAndEvent($"Found Streams: Id: {p.Id}, Site: {p.SiteId}, DisplayName: { p.DisplayName}, TypeId: {p.TypeId}, TypeDisplayName: {p.TypeDisplayName}, Unit: {p.Units}, Scale: {p.ValueScale}");
+					LogAndEvent($"Found Stream: Id: {p.Id}, Site: {p.SiteId}, DisplayName: { p.DisplayName}, TypeId: {p.TypeId}, TypeDisplayName: {p.TypeDisplayName}, Unit: {p.Units}, Scale: {p.ValueScale}");
 					//"Find/Create: Type: " + csType + ", " + ", Name: '" + p.Name + "', StreamId: " + p.Alias.ToString() + ", Parent: " + FieldDevice.FullName);
 
 					// If there is a point of the correct type and SELoggerName linked to this device, use it
@@ -898,12 +928,11 @@ namespace DriverSELogger
 
 					if (pointId == 0)
 					{
-						// If there is a point of the correct type and SELoggerName linked to this device, use it
-						// Look for a point of type csType = SPtype and p.name = SELoggerName linked to this FieldDevice, so it could be in a different folder
-						string sql = "SELECT id, Fullname, ScannerId, SELoggerName, SPType, StreamId FROM " + PointTables + " WHERE " +
+						// If there is a point of the correct scanner and stream linked to this device, use it
+						// Look for a point of correct stream Id linked to this FieldDevice, so it could be in a different folder
+						string sql = "SELECT id, Fullname, ScannerId, StreamId FROM " + PointTables + " WHERE " +
 										"ScannerId = " + FieldDevice.Id.ToString() + " and " +
-										"SELoggerName = '" + p.DisplayName + "' and " +
-										"TypeName in (" + csType + ")";
+										"StreamId = " + p.Id;
 						pointId = QueryDatabaseForId(AdvConnection, sql);
 						if (pointId != 0)
 						{
@@ -911,15 +940,14 @@ namespace DriverSELogger
 						}
 					}
 
-					// Not found a point with the right SELoggerName, so look in folder
-					// If there is a point of the correct type and SELoggerName not linked to this device, link and use it
+					// Not found a point with the right stream, so look in folder
+					// If there is a point and SELoggerName not linked to this device, link and use it
 					if (pointId == 0)
 					{
-						// Look for a point of type csType = SPtype and p.name = SELoggerName in FieldDevice folder/subfolders
-						string sql = "SELECT id, Fullname, ScannerId, SELoggerName, SPType, StreamId FROM " + PointTables + " WHERE " +
+						// Look for a point of p.DisplayName = DisplayName in FieldDevice folder/subfolders
+						string sql = "SELECT id, Fullname, ScannerId, DisplayName, StreamId FROM " + PointTables + " WHERE " +
 										"FullName LIKE '" + FieldDevice.Parent.FullName + ".%' and " +
-										"SELoggerName = '" + p.DisplayName + "' and " +
-										"TypeName in (" + csType + ")";
+										"DisplayName = '" + p.DisplayName + "'";
 						pointId = QueryDatabaseForId(AdvConnection, sql);
 						if (pointId != 0)
 						{
@@ -929,13 +957,12 @@ namespace DriverSELogger
 
 					// Still not found,
 					// If there is a point with name <ConfigGroupId>.<Device>.<Name/path>, use it 
-					// (it could have been created in a previous template and the SP Name not set)
+					// (it could have been created in a previous template and the DisplayName not set)
 					if (pointId == 0)
 					{
 						// Look for a point of type csType = SPtype and p.name = SELoggerName in FieldDevice folder/subfolders
-						string sql = "SELECT id, Fullname, ScannerId, SELoggerName, SPType, StreamId FROM " + PointTables + " WHERE " +
-										"FullName = '" + FieldDevice.Parent.FullName + "." + pointFullName + "' and " +
-										"TypeName in (" + csType + ")";
+						string sql = "SELECT id, Fullname, ScannerId, DisplayName, StreamId FROM " + PointTables + " WHERE " +
+										"FullName = '" + pointFullName + "'";
 
 						pointId = QueryDatabaseForId(AdvConnection, sql);
 						if (pointId != 0)
@@ -1045,9 +1072,9 @@ namespace DriverSELogger
 
 					// Other properties (analogue)
 					CheckSet(PointObject, "Units", p.Units);
-					CheckSet(PointObject, "FullScale", p.ValueScale);
+					// Don't know what this property is yet: 
+					//CheckSet(PointObject, "FullScale", p.ValueScale);
 
-					// TypeId?
 
 				}
 			}
@@ -1133,11 +1160,11 @@ namespace DriverSELogger
 		public void RefreshPendingQueue()
         {
             // Build an array of uuid and device information
-            string [] pendingQueue = new string[configBuf.Count];
+            Int32 [] pendingQueue = new Int32[configBuf.Count];
             int i = 0;
             foreach ( var c in configBuf)
             {
-                pendingQueue[i] = c.Value.DeviceId.ToString();
+                pendingQueue[i] = c.Value.DeviceId;
                 i++;
             }
             App.SendReceiveObject(DBChannel.Id, OPCProperty.SendRecUpdateConfigQueue, pendingQueue);
@@ -1239,8 +1266,17 @@ namespace DriverSELogger
 
             ((DrvSELoggerChannel)Channel).AddScannerToIndex(this);
 
-			// May set 'connect' time here?
-
+			// Read last retrieval time here from a data item on the server
+			Object Data = null;
+			App.SendReceiveObject(this.DBScanner.Id, OPCProperty.SendRecGetLastDataTime, "", ref Data);
+			DBScanner.LastDataTime = (DateTime)Data;
+			// Ensure this time is greater than that configured in channel's MaxRetrieveDays
+			DateTime EarliestDate = DateTime.UtcNow.AddDays(-((DrvSELoggerChannel)Channel).DBChannel.MaxRetrieveDays);
+			if (EarliestDate > DBScanner.LastDataTime)
+			{
+				DBScanner.LastDataTime = EarliestDate;
+				LogAndEvent($"Set earliest retrieval date to: {EarliestDate}");
+			}
 			return SourceStatus.Online;
         }
 
@@ -1259,11 +1295,9 @@ namespace DriverSELogger
 
 			try
 			{
-				// oldest sample in Epoch
-				int SampleDate = (int) Util.DateTimeToUnixTimeStamp(DateTime.UtcNow.AddDays(-7*4));
-				var samplesTask = new SampleApi().SampleGetSamplesScalarBatchBySiteAsync(DBScanner.SiteId, SampleDate , $"Bearer {channel.tokenStr}");
-				samplesTask.Wait();
-				response = samplesTask.Result;
+				// newest sample in Epoch - plus one second to avoid duplicate values
+				int SampleDate = 1 + (int) Util.DateTimeToUnixTimeStamp(this.DBScanner.LastDataTime);
+				response = new SampleApi().SampleGetSamplesScalarBatchBySite(DBScanner.SiteId, SampleDate , $"Bearer {channel.tokenStr}");
 			}
 			catch (ApiException e)
 			{
@@ -1272,9 +1306,12 @@ namespace DriverSELogger
 
 			if (response?.Samples != null)
 			{
-				foreach (var sample in response.Samples)
+				DateTime LastDataTime = ProcessMetrics(response);
+				if (LastDataTime >= this.DBScanner.LastDataTime)
 				{
-					LogAndEvent($"Found New Sample: ID: { sample.Id}, Value: { sample.Value}, SampleDate: {sample.SampleDate}, StreamId: {sample.StreamId}");
+					// If last data time has changed, then write to the scanner and send to the server
+					this.DBScanner.LastDataTime = LastDataTime;
+					App.SendReceiveObject(this.DBScanner.Id, OPCProperty.SendRecUpdateLastDataTime, LastDataTime);
 				}
 			}
 
@@ -1297,15 +1334,6 @@ namespace DriverSELogger
 			LogAndEvent("Driver Action - scanner.");
 			switch (Transaction.ActionType)
 			{
-				//case OPCProperty.DriverActionResetConfigFD:
-				//	{
-				//		// Set the config versions to -1
-				//		// So when they are read next time they get processed as new
-				//		this.DBScanner.ConfigChecksum = "";
-				//		LogAndEvent("Reset Configuration checksum");
-				//	}
-				//	this.CompleteTransaction(Transaction, 0, "Successfully reset checksum.");
-				//	break;
 
 				default:
 					base.OnExecuteAction(Transaction);
@@ -1313,9 +1341,11 @@ namespace DriverSELogger
 			}
 		}
 
-		public void ProcessMetrics(SampleGetSamplesScalarBatchResponseBody response)
+		public DateTime ProcessMetrics(SampleGetSamplesScalarBatchBySiteResponseBody response)
 		{
 			bool DataReceived = false;
+			
+			DateTime LastDataTime = DateTime.UtcNow.AddDays(-365); // Default oldest date of data
 
 			if (response?.Samples != null)
 			{
@@ -1330,6 +1360,10 @@ namespace DriverSELogger
 
 					// Process
 					ProcessPointByNumber( (int)sample.StreamId, sample.Value, sample.SampleDate);
+					if (sample.SampleDate > LastDataTime)
+					{
+						LastDataTime = (sample.SampleDate is null) ? DateTime.UtcNow : (DateTime)sample.SampleDate;
+					}
 				}
 			}
 
@@ -1338,6 +1372,7 @@ namespace DriverSELogger
 				LogAndEvent("Flushing buffered updates.");
 				this.FlushUpdates(); // Write to server - buffering this so only called once per device/time
 			}
+			return LastDataTime;
 		}
 
 
@@ -1400,7 +1435,7 @@ namespace DriverSELogger
         {
 			string ProcLogText = "";
 
-			ProcLogText += ("Point: " + FoundPoint.FullName + " value.");
+			ProcLogText += "Point: " + FoundPoint.FullName + " value: " + Value;
 
 			// Quality
 			PointSourceEntry.Quality quality = PointSourceEntry.Quality.Good;

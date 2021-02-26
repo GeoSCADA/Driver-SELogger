@@ -158,6 +158,22 @@
 copy $(TargetDir)SELogger.PDB "C:\Program Files\Schneider Electric\ClearSCADA\"
 copy $(TargetPath) "C:\Program Files\Schneider Electric\ClearSCADA\"
 copy $(TargetDir)DriverSELogger.PDB "C:\Program Files\Schneider Electric\ClearSCADA\"
+
+copy $(TargetDir)IO.Swagger.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+copy $(TargetDir)IO.Swagger.PDB "C:\Program Files\Schneider Electric\ClearSCADA\"
+
+copy $(TargetDir)Newtonsoft.Json.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+copy $(TargetDir)RestSharp.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+
+copy $(TargetDir)Microsoft.IdentityModel.JsonWebTokens.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+copy $(TargetDir)Microsoft.IdentityModel.Logging.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+copy $(TargetDir)Microsoft.IdentityModel.Tokens.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+
+copy $(TargetDir)System.Buffers.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+copy $(TargetDir)System.IdentityModel.Tokens.Jwt.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+copy $(TargetDir)System.Net.Http.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+
+copy $(TargetDir)System.Runtime.CompilerServices.Unsafe.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
