@@ -9,7 +9,7 @@ namespace SELogger
 {
 	public class OPCProperty
 	{
-		public const UInt32 Base = 0x0468E000;
+		public const UInt32 Base = 0x04691000;
 
 		// Channel / Broker
 		// RendRecs
@@ -21,6 +21,7 @@ namespace SELogger
 		public const UInt32 SendRecLogChannelEventText = OPCProperty.Base + 79;
 		// Actions
 		public const UInt32 DriverActionInitiateConfig = OPCProperty.Base + 33;
+		public const UInt32 DriverActionRetrieveConfig = OPCProperty.Base + 113;
 
 		// Scanner / FD
 		// RendRecs

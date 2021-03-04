@@ -20,8 +20,8 @@ namespace RestAPIExample
         /// <summary>
         /// Fill here the right API key and secret
         /// </summary>
-        private const string API_KEY = "903C5C7B32AA492DAD680DF2A7D4897F";
-        private const string API_SECRET = "1ZgMTrPUQN+L+/WwOaCiPYRSmeVfr7UHkWp3xtbDCls=";
+        private const string API_KEY = "<*** Put your key here ***>";
+        private const string API_SECRET = "<*** Put yourr secret here ***>";
 
 
 

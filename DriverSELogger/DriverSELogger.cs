@@ -556,6 +556,14 @@ namespace DriverSELogger
 					}
 					break;
 
+				case OPCProperty.DriverActionRetrieveConfig:
+					{
+						// Cause a scheduled retrieval in the next poll make making the last poll time old.
+						LastPollTime = DateTime.UtcNow.AddDays(-100);
+						this.CompleteTransaction(Transaction, 0, "Successfully scheduled retrieval" );
+					}
+					break;
+
 				default:
 					base.OnExecuteAction(Transaction);
 					break;
@@ -823,18 +831,24 @@ namespace DriverSELogger
 
 				//////////////////////////////////////////////////////////////////////////////////
 				// Set field device properties
-				// Start with device. Checkset returns false if failed, 
-				// but we will ignore some failures as the property may be already set appropriately in the template
-
+				// ChannelId - ignore if set already - may be already set appropriately in the template
+				Int32 ChanId = (Int32)FieldDevice.GetProperty("ChannelId");
+				if (ChanId == DBChannel.Id)
+				{
+					LogAndEvent("Field Device has correct channel.");
+				}
+				else
+				{
+					if (!CheckSet(FieldDevice, "ChannelId", this.DBChannel.Id))
+					{
+						ErrorText = "Error writing device ChannelId.";
+						return false;
+					}
+				}
+				// DeviceId. Checkset returns false if failed, 
 				if (!CheckSet(FieldDevice, "DeviceId", DeviceId))
 				{
 					ErrorText = "Error writing device DeviceId.";
-					return false;
-				}
-
-				if (!CheckSet(FieldDevice, "ChannelId", this.DBChannel.Id))
-				{
-					ErrorText = "Error writing device ChannelId.";
 					return false;
 				}
 			}

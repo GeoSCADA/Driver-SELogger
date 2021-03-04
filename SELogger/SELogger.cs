@@ -79,8 +79,8 @@ namespace SELogger
             get { return AreaOfInterestIdBase.Name; }
         }
 
-        [Label("Read Interval", 1, 3)]
-        [ConfigField("ScanRate", "Configuration read interval.", 1, 4, 0x03505045)]
+        [Label("Read Interval", 2, 3)]
+        [ConfigField("ScanRate", "Configuration read interval.", 2, 4, 0x03505045)]
         [Interval(IntervalType.Seconds)]
         public UInt32 ConfigReadRate = 3600;
 
@@ -288,6 +288,14 @@ namespace SELogger
             }
         }
 
+        [Method("Retrieve Configuration", "Get latest configuration from API in the next connection poll.", OPCProperty.Base + 113)]
+        public void RetrieveConfiguration()
+        {
+                object[] ArgObject = new Object[1];
+                ArgObject[0] = "";
+                DriverAction(OPCProperty.DriverActionRetrieveConfig, ArgObject, "Retrieve Configuration" );
+        }
+
     }
 
     [Table("SE Logger Device", "SELogger")]
@@ -345,7 +353,7 @@ namespace SELogger
 		public String NormalScanOffset = "M";
 
         [Label("Connection", 3, 1)]
-        [ConfigField("Channel", "Connection Reference.", 3, 2, 0x03505041)]
+        [ConfigField("Channel", "Connection Reference.", 3, 2, 0x03505041, DefaultOverride = true)]
         public Reference<SELoggerChannel> ChannelId;
 
         [Label("Device Id", 4, 1)]
@@ -552,13 +560,13 @@ namespace SELogger
 		[Label("StreamId", 3, 3)]
 		[ConfigField("StreamId",
 					 "The stream identification number.",
-					 3, 4, OPCProperty.Base + 6)]
+					 3, 4, OPCProperty.Base + 6, DefaultOverride = true)]
 		public Int32 StreamId;
 
         [Label("SiteId", 3, 5)]
         [ConfigField("SiteId",
                      "The site identification number.",
-                     3, 6, OPCProperty.Base + 90)]
+                     3, 6, OPCProperty.Base + 90, DefaultOverride = true)]
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
@@ -699,13 +707,13 @@ namespace SELogger
         [Label("StreamId", 3, 3)]
         [ConfigField("StreamId",
                      "The stream identification number.",
-                     3, 4, OPCProperty.Base + 6)]
+                     3, 4, OPCProperty.Base + 6, DefaultOverride = true)]
         public Int32 StreamId;
 
         [Label("SiteId", 3, 5)]
         [ConfigField("SiteId",
                      "The site identification number.",
-                     3, 6, OPCProperty.Base + 90)]
+                     3, 6, OPCProperty.Base + 90, DefaultOverride = true)]
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
@@ -844,13 +852,13 @@ namespace SELogger
         [Label("StreamId", 3, 3)]
         [ConfigField("StreamId",
                      "The stream identification number.",
-                     3, 4, OPCProperty.Base + 6)]
+                     3, 4, OPCProperty.Base + 6, DefaultOverride = true)]
         public Int32 StreamId;
 
         [Label("SiteId", 3, 5)]
         [ConfigField("SiteId",
                      "The site identification number.",
-                     3, 6, OPCProperty.Base + 90)]
+                     3, 6, OPCProperty.Base + 90, DefaultOverride = true)]
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
@@ -988,13 +996,13 @@ namespace SELogger
         [Label("StreamId", 3, 3)]
         [ConfigField("StreamId",
                      "The stream identification number.",
-                     3, 4, OPCProperty.Base + 6)]
+                     3, 4, OPCProperty.Base + 6, DefaultOverride = true)]
         public Int32 StreamId;
 
         [Label("SiteId", 3, 5)]
         [ConfigField("SiteId",
                      "The site identification number.",
-                     3, 6, OPCProperty.Base + 90)]
+                     3, 6, OPCProperty.Base + 90, DefaultOverride = true)]
         public Int32 SiteId;
 
         // Read-only data field containing a type Name
