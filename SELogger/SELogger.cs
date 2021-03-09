@@ -455,11 +455,22 @@ namespace SELogger
 
 		public override void OnValidateConfig(MessageInfo Errors)
         {
-			// ToDo - e.g. check DeviceId 
-			if (DeviceId == 0)
-			{
-				Errors.Add(this, "DeviceId", "Device Id must not be zero.");
-			}
+            // Do not check template against properties
+            if (!IsTemplate())
+            {
+                if (DeviceId == 0)
+                {
+                    Errors.Add(this, "DeviceId", "Device Id must not be zero.");
+                }
+                if (SiteId == 0)
+                {
+                    Errors.Add(this, "SiteId", "Site Id must not be zero.");
+                }
+                if (ChannelId.Id <= 0)
+                {
+                    Errors.Add(this, "ChannelId", "Logger must be linked to a channel.");
+                }
+            }
             base.OnValidateConfig(Errors);
         }
 
