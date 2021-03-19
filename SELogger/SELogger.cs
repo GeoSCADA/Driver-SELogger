@@ -284,7 +284,7 @@ namespace SELogger
             {
                 object[] ArgObject = new Object[1];
                 ArgObject[0] = ConfigBuf[0];
-                DriverAction(OPCProperty.DriverActionInitiateConfig, ArgObject, "Initiate configuration of new Device: " + ConfigBuf[0]);
+                DriverAction(OPCProperty.DriverActionInitiateConfig, ArgObject, "Initiate configuration of new Device: " + ConfigBuf[0].ToString());
             }
         }
 
@@ -304,11 +304,11 @@ namespace SELogger
 	public class SELoggerDevice : Scanner
     {
         [AlarmCondition("SELoggerDeviceScannerAlarm", "SELoggerDevice", 0x0350532F)]
-		[AlarmSubCondition("SELoggerCommSeq")]
-		[AlarmSubCondition("SELoggerCommLWT")]
+		[AlarmSubCondition("SELoggerCommOffline")]
         public Alarm SELoggerScannerAlarm;
 
         [AlarmCondition("SELoggerDeviceConfigAlarm", "SELoggerDevice", OPCProperty.Base + 19)]
+        // Both unused
         [AlarmSubCondition("SELoggerNodeIdError")]
         [AlarmSubCondition("SELoggerConfigVerError")]
         public Alarm SELoggerConfigAlarm;
@@ -485,7 +485,7 @@ namespace SELogger
             // Set scanner alarm
             else if (Type == OPCProperty.SendRecRaiseScannerAlarm)
             {
-                SELoggerScannerAlarm.Raise("SELoggerCommLWT", "SELoggerCommError: Offline Received", Severity, true);
+                SELoggerScannerAlarm.Raise("SELoggerCommOffline", "SELoggerCommError: Offline Received", Severity, true);
                 SetDataModified(true);
             }
 			// Recieve checksum data (configuration) for known device

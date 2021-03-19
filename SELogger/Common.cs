@@ -36,18 +36,6 @@ namespace SELogger
 
 	}
 
-	// Used for SendReceives
-	[Serializable]
-	public class ReplyObject
-	{
-		public bool Status;
-
-		public ReplyObject( bool _Status)
-		{
-			Status = _Status;
-		}
-	}
-
 
 	public class Util
 	{

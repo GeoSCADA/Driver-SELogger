@@ -442,7 +442,7 @@ namespace DriverSELogger
 				}
 
 				object ReplyObject = "";
-				// Add Device and Point data into one for the SendReceive?
+				// Add Device and Point data into one for the SendReceive
 				App.SendReceiveObject(FD.DBScanner.Id, OPCProperty.SendRecSetChecksum, ConfigChecksum, ref ReplyObject);
 
 			}
