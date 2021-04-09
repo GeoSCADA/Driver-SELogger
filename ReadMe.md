@@ -6,7 +6,7 @@ Geo SCADA Expert, written in C# for the Simple Driver Framework.
 IMPORTANT
 Please read the Word file available from SE Exchange Shop for a guide
 to customization and implementation.
-Link: https://shop.exchange.se.com/en-US/apps/xxxTBAxxxx/
+Link: https://shop.exchange.se.com/en-US/apps/74050/ecostruxure-geo-scada-expert-data-logger-sample-driver
 
 The driver is offered as source code which you can build with Visual 
 Studio. It includes the two parts of the driver and an installer, enabling 
