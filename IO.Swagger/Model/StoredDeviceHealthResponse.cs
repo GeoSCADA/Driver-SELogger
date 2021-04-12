@@ -39,11 +39,11 @@ namespace IO.Swagger.Model
         /// Initializes a new instance of the <see cref="StoredDeviceHealthResponse" /> class.
         /// </summary>
         /// <param name="counterTypeId">Counter type ID (required).</param>
-        /// <param name="DeviceChildIdDefunct">Device ID of device health (required).</param>
+        /// <param name="deviceId">Device ID of device health (required).</param>
         /// <param name="id">ID is the unique id of the device health. (required).</param>
         /// <param name="sampleDate">Date of sample (required).</param>
         /// <param name="value">Value (required).</param>
-        public StoredDeviceHealthResponse(int? counterTypeId = default(int?), int? DeviceChildIdDefunct = default(int?), long? id = default(long?), DateTime? sampleDate = default(DateTime?), int? value = default(int?))
+        public StoredDeviceHealthResponse(int? counterTypeId = default(int?), int? deviceId = default(int?), long? id = default(long?), DateTime? sampleDate = default(DateTime?), int? value = default(int?))
         {
             // to ensure "counterTypeId" is required (not null)
             if (counterTypeId == null)
@@ -54,14 +54,14 @@ namespace IO.Swagger.Model
             {
                 this.CounterTypeId = counterTypeId;
             }
-            // to ensure "DeviceChildIdDefunct" is required (not null)
-            if (DeviceChildIdDefunct == null)
+            // to ensure "deviceId" is required (not null)
+            if (deviceId == null)
             {
-                throw new InvalidDataException("DeviceChildIdDefunct is a required property for StoredDeviceHealthResponse and cannot be null");
+                throw new InvalidDataException("deviceId is a required property for StoredDeviceHealthResponse and cannot be null");
             }
             else
             {
-                this.DeviceChildIdDefunct = DeviceChildIdDefunct;
+                this.DeviceId = deviceId;
             }
             // to ensure "id" is required (not null)
             if (id == null)
@@ -104,7 +104,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>Device ID of device health</value>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
-        public int? DeviceChildIdDefunct { get; set; }
+        public int? DeviceId { get; set; }
 
         /// <summary>
         /// ID is the unique id of the device health.
@@ -136,7 +136,7 @@ namespace IO.Swagger.Model
             var sb = new StringBuilder();
             sb.Append("class StoredDeviceHealthResponse {\n");
             sb.Append("  CounterTypeId: ").Append(CounterTypeId).Append("\n");
-            sb.Append("  DeviceChildIdDefunct: ").Append(DeviceChildIdDefunct).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  SampleDate: ").Append(SampleDate).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
@@ -180,9 +180,9 @@ namespace IO.Swagger.Model
                     this.CounterTypeId.Equals(input.CounterTypeId))
                 ) && 
                 (
-                    this.DeviceChildIdDefunct == input.DeviceChildIdDefunct ||
-                    (this.DeviceChildIdDefunct != null &&
-                    this.DeviceChildIdDefunct.Equals(input.DeviceChildIdDefunct))
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -212,8 +212,8 @@ namespace IO.Swagger.Model
                 int hashCode = 41;
                 if (this.CounterTypeId != null)
                     hashCode = hashCode * 59 + this.CounterTypeId.GetHashCode();
-                if (this.DeviceChildIdDefunct != null)
-                    hashCode = hashCode * 59 + this.DeviceChildIdDefunct.GetHashCode();
+                if (this.DeviceId != null)
+                    hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.SampleDate != null)
@@ -237,10 +237,10 @@ namespace IO.Swagger.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CounterTypeId, must be a value greater than or equal to 1.", new [] { "CounterTypeId" });
             }
 
-            // DeviceChildIdDefunct (int?) minimum
-            if(this.DeviceChildIdDefunct < (int?)1)
+            // DeviceId (int?) minimum
+            if(this.DeviceId < (int?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceChildIdDefunct, must be a value greater than or equal to 1.", new [] { "DeviceChildIdDefunct" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceId, must be a value greater than or equal to 1.", new [] { "DeviceId" });
             }
 
             // Value (int?) minimum

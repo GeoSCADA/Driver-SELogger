@@ -39,15 +39,15 @@ namespace IO.Swagger.Model
         /// Initializes a new instance of the <see cref="ChannelGetChannelByIDResponseBody" /> class.
         /// </summary>
         /// <param name="creationDate">Creation date (required).</param>
-        /// <param name="DeviceChildIdDefunct">Device ID (required).</param>
+        /// <param name="deviceId">Device ID (required).</param>
         /// <param name="displayName">Channel name (required).</param>
         /// <param name="displayStatusName">Status name (required).</param>
         /// <param name="id">ID is the unique id of the channel. (required).</param>
-        /// <param name="onDeviceId">On device number (required).</param>
+        /// <param name="onDeviceNum">On device number (required).</param>
         /// <param name="statusId">Status ID (required).</param>
         /// <param name="typeDisplayName">Type name (required).</param>
         /// <param name="typeId">Type ID (required).</param>
-        public ChannelGetChannelByIDResponseBody(DateTime? creationDate = default(DateTime?), int? DeviceChildIdDefunct = default(int?), string displayName = default(string), string displayStatusName = default(string), long? id = default(long?), long? onDeviceId = default(long?), int? statusId = default(int?), string typeDisplayName = default(string), int? typeId = default(int?))
+        public ChannelGetChannelByIDResponseBody(DateTime? creationDate = default(DateTime?), int? deviceId = default(int?), string displayName = default(string), string displayStatusName = default(string), long? id = default(long?), long? onDeviceNum = default(long?), int? statusId = default(int?), string typeDisplayName = default(string), int? typeId = default(int?))
         {
             // to ensure "creationDate" is required (not null)
             if (creationDate == null)
@@ -58,14 +58,14 @@ namespace IO.Swagger.Model
             {
                 this.CreationDate = creationDate;
             }
-            // to ensure "DeviceChildIdDefunct" is required (not null)
-            if (DeviceChildIdDefunct == null)
+            // to ensure "deviceId" is required (not null)
+            if (deviceId == null)
             {
-                throw new InvalidDataException("DeviceChildIdDefunct is a required property for ChannelGetChannelByIDResponseBody and cannot be null");
+                throw new InvalidDataException("deviceId is a required property for ChannelGetChannelByIDResponseBody and cannot be null");
             }
             else
             {
-                this.DeviceChildIdDefunct = DeviceChildIdDefunct;
+                this.DeviceId = deviceId;
             }
             // to ensure "displayName" is required (not null)
             if (displayName == null)
@@ -94,14 +94,14 @@ namespace IO.Swagger.Model
             {
                 this.Id = id;
             }
-            // to ensure "onDeviceId" is required (not null)
-            if (onDeviceId == null)
+            // to ensure "onDeviceNum" is required (not null)
+            if (onDeviceNum == null)
             {
-                throw new InvalidDataException("onDeviceId is a required property for ChannelGetChannelByIDResponseBody and cannot be null");
+                throw new InvalidDataException("onDeviceNum is a required property for ChannelGetChannelByIDResponseBody and cannot be null");
             }
             else
             {
-                this.OnDeviceId = onDeviceId;
+                this.OnDeviceNum = onDeviceNum;
             }
             // to ensure "statusId" is required (not null)
             if (statusId == null)
@@ -144,7 +144,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>Device ID</value>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
-        public int? DeviceChildIdDefunct { get; set; }
+        public int? DeviceId { get; set; }
 
         /// <summary>
         /// Channel name
@@ -172,7 +172,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>On device number</value>
         [DataMember(Name="on_device_num", EmitDefaultValue=false)]
-        public long? OnDeviceId { get; set; }
+        public long? OnDeviceNum { get; set; }
 
         /// <summary>
         /// Status ID
@@ -204,11 +204,11 @@ namespace IO.Swagger.Model
             var sb = new StringBuilder();
             sb.Append("class ChannelGetChannelByIDResponseBody {\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
-            sb.Append("  DeviceChildIdDefunct: ").Append(DeviceChildIdDefunct).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  DisplayStatusName: ").Append(DisplayStatusName).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  OnDeviceId: ").Append(OnDeviceId).Append("\n");
+            sb.Append("  OnDeviceNum: ").Append(OnDeviceNum).Append("\n");
             sb.Append("  StatusId: ").Append(StatusId).Append("\n");
             sb.Append("  TypeDisplayName: ").Append(TypeDisplayName).Append("\n");
             sb.Append("  TypeId: ").Append(TypeId).Append("\n");
@@ -252,9 +252,9 @@ namespace IO.Swagger.Model
                     this.CreationDate.Equals(input.CreationDate))
                 ) && 
                 (
-                    this.DeviceChildIdDefunct == input.DeviceChildIdDefunct ||
-                    (this.DeviceChildIdDefunct != null &&
-                    this.DeviceChildIdDefunct.Equals(input.DeviceChildIdDefunct))
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
                 ) && 
                 (
                     this.DisplayName == input.DisplayName ||
@@ -272,9 +272,9 @@ namespace IO.Swagger.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.OnDeviceId == input.OnDeviceId ||
-                    (this.OnDeviceId != null &&
-                    this.OnDeviceId.Equals(input.OnDeviceId))
+                    this.OnDeviceNum == input.OnDeviceNum ||
+                    (this.OnDeviceNum != null &&
+                    this.OnDeviceNum.Equals(input.OnDeviceNum))
                 ) && 
                 (
                     this.StatusId == input.StatusId ||
@@ -304,16 +304,16 @@ namespace IO.Swagger.Model
                 int hashCode = 41;
                 if (this.CreationDate != null)
                     hashCode = hashCode * 59 + this.CreationDate.GetHashCode();
-                if (this.DeviceChildIdDefunct != null)
-                    hashCode = hashCode * 59 + this.DeviceChildIdDefunct.GetHashCode();
+                if (this.DeviceId != null)
+                    hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
                 if (this.DisplayName != null)
                     hashCode = hashCode * 59 + this.DisplayName.GetHashCode();
                 if (this.DisplayStatusName != null)
                     hashCode = hashCode * 59 + this.DisplayStatusName.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.OnDeviceId != null)
-                    hashCode = hashCode * 59 + this.OnDeviceId.GetHashCode();
+                if (this.OnDeviceNum != null)
+                    hashCode = hashCode * 59 + this.OnDeviceNum.GetHashCode();
                 if (this.StatusId != null)
                     hashCode = hashCode * 59 + this.StatusId.GetHashCode();
                 if (this.TypeDisplayName != null)
@@ -331,10 +331,10 @@ namespace IO.Swagger.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // DeviceChildIdDefunct (int?) minimum
-            if(this.DeviceChildIdDefunct < (int?)1)
+            // DeviceId (int?) minimum
+            if(this.DeviceId < (int?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceChildIdDefunct, must be a value greater than or equal to 1.", new [] { "DeviceChildIdDefunct" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceId, must be a value greater than or equal to 1.", new [] { "DeviceId" });
             }
 
             // DisplayName (string) maxLength

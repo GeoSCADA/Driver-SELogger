@@ -50,28 +50,28 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> SamplegpsAckSampleGPSBatchWithHttpInfo (int? sampleId, string authorization, string agent = null);
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps
+        /// getGPSByDeviceId samplegps
         /// </summary>
         /// <remarks>
         /// Returns GPS information about specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SamplegpsGetGPSByDeviceChildIdDefunctResponseBody</returns>
-        SamplegpsGetGPSByDeviceChildIdDefunctResponseBody SamplegpsGetGPSByDeviceChildIdDefunct (int? DeviceChildIdDefunct, string authorization);
+        /// <returns>SamplegpsGetGPSByDeviceIDResponseBody</returns>
+        SamplegpsGetGPSByDeviceIDResponseBody SamplegpsGetGPSByDeviceId (int? deviceId, string authorization);
 
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps
+        /// getGPSByDeviceId samplegps
         /// </summary>
         /// <remarks>
         /// Returns GPS information about specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SamplegpsGetGPSByDeviceChildIdDefunctResponseBody</returns>
-        ApiResponse<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody> SamplegpsGetGPSByDeviceChildIdDefunctWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        /// <returns>ApiResponse of SamplegpsGetGPSByDeviceIDResponseBody</returns>
+        ApiResponse<SamplegpsGetGPSByDeviceIDResponseBody> SamplegpsGetGPSByDeviceIdWithHttpInfo (int? deviceId, string authorization);
         /// <summary>
         /// getSamplesGPSBatch samplegps
         /// </summary>
@@ -152,28 +152,28 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> SamplegpsAckSampleGPSBatchAsyncWithHttpInfo (int? sampleId, string authorization, string agent = null);
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps
+        /// getGPSByDeviceId samplegps
         /// </summary>
         /// <remarks>
         /// Returns GPS information about specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SamplegpsGetGPSByDeviceChildIdDefunctResponseBody</returns>
-        System.Threading.Tasks.Task<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody> SamplegpsGetGPSByDeviceChildIdDefunctAsync (int? DeviceChildIdDefunct, string authorization);
+        /// <returns>Task of SamplegpsGetGPSByDeviceIDResponseBody</returns>
+        System.Threading.Tasks.Task<SamplegpsGetGPSByDeviceIDResponseBody> SamplegpsGetGPSByDeviceIdAsync (int? deviceId, string authorization);
 
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps
+        /// getGPSByDeviceId samplegps
         /// </summary>
         /// <remarks>
         /// Returns GPS information about specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SamplegpsGetGPSByDeviceChildIdDefunctResponseBody)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody>> SamplegpsGetGPSByDeviceChildIdDefunctAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        /// <returns>Task of ApiResponse (SamplegpsGetGPSByDeviceIDResponseBody)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SamplegpsGetGPSByDeviceIDResponseBody>> SamplegpsGetGPSByDeviceIdAsyncWithHttpInfo (int? deviceId, string authorization);
         /// <summary>
         /// getSamplesGPSBatch samplegps
         /// </summary>
@@ -488,35 +488,35 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps Returns GPS information about specified device
+        /// getGPSByDeviceId samplegps Returns GPS information about specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SamplegpsGetGPSByDeviceChildIdDefunctResponseBody</returns>
-        public SamplegpsGetGPSByDeviceChildIdDefunctResponseBody SamplegpsGetGPSByDeviceChildIdDefunct (int? DeviceChildIdDefunct, string authorization)
+        /// <returns>SamplegpsGetGPSByDeviceIDResponseBody</returns>
+        public SamplegpsGetGPSByDeviceIDResponseBody SamplegpsGetGPSByDeviceId (int? deviceId, string authorization)
         {
-             ApiResponse<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody> localVarResponse = SamplegpsGetGPSByDeviceChildIdDefunctWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<SamplegpsGetGPSByDeviceIDResponseBody> localVarResponse = SamplegpsGetGPSByDeviceIdWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps Returns GPS information about specified device
+        /// getGPSByDeviceId samplegps Returns GPS information about specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SamplegpsGetGPSByDeviceChildIdDefunctResponseBody</returns>
-        public ApiResponse< SamplegpsGetGPSByDeviceChildIdDefunctResponseBody > SamplegpsGetGPSByDeviceChildIdDefunctWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        /// <returns>ApiResponse of SamplegpsGetGPSByDeviceIDResponseBody</returns>
+        public ApiResponse< SamplegpsGetGPSByDeviceIDResponseBody > SamplegpsGetGPSByDeviceIdWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling SamplegpsApi->SamplegpsGetGPSByDeviceChildIdDefunct");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SamplegpsApi->SamplegpsGetGPSByDeviceId");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling SamplegpsApi->SamplegpsGetGPSByDeviceChildIdDefunct");
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling SamplegpsApi->SamplegpsGetGPSByDeviceId");
 
-            var localVarPath = "/device/id/{DeviceChildIdDefunct}/sample/gps";
+            var localVarPath = "/device/id/{deviceId}/sample/gps";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -538,7 +538,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required
@@ -556,46 +556,46 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SamplegpsGetGPSByDeviceChildIdDefunct", localVarResponse);
+                Exception exception = ExceptionFactory("SamplegpsGetGPSByDeviceId", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody>(localVarStatusCode,
+            return new ApiResponse<SamplegpsGetGPSByDeviceIDResponseBody>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SamplegpsGetGPSByDeviceChildIdDefunctResponseBody) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SamplegpsGetGPSByDeviceChildIdDefunctResponseBody)));
+                (SamplegpsGetGPSByDeviceIDResponseBody) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SamplegpsGetGPSByDeviceIDResponseBody)));
         }
 
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps Returns GPS information about specified device
+        /// getGPSByDeviceId samplegps Returns GPS information about specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SamplegpsGetGPSByDeviceChildIdDefunctResponseBody</returns>
-        public async System.Threading.Tasks.Task<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody> SamplegpsGetGPSByDeviceChildIdDefunctAsync (int? DeviceChildIdDefunct, string authorization)
+        /// <returns>Task of SamplegpsGetGPSByDeviceIDResponseBody</returns>
+        public async System.Threading.Tasks.Task<SamplegpsGetGPSByDeviceIDResponseBody> SamplegpsGetGPSByDeviceIdAsync (int? deviceId, string authorization)
         {
-             ApiResponse<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody> localVarResponse = await SamplegpsGetGPSByDeviceChildIdDefunctAsyncWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<SamplegpsGetGPSByDeviceIDResponseBody> localVarResponse = await SamplegpsGetGPSByDeviceIdAsyncWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// getGPSByDeviceChildIdDefunct samplegps Returns GPS information about specified device
+        /// getGPSByDeviceId samplegps Returns GPS information about specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose GPS data should be returned</param>
+        /// <param name="deviceId">ID of the device whose GPS data should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SamplegpsGetGPSByDeviceChildIdDefunctResponseBody)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody>> SamplegpsGetGPSByDeviceChildIdDefunctAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        /// <returns>Task of ApiResponse (SamplegpsGetGPSByDeviceIDResponseBody)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<SamplegpsGetGPSByDeviceIDResponseBody>> SamplegpsGetGPSByDeviceIdAsyncWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling SamplegpsApi->SamplegpsGetGPSByDeviceChildIdDefunct");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SamplegpsApi->SamplegpsGetGPSByDeviceId");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling SamplegpsApi->SamplegpsGetGPSByDeviceChildIdDefunct");
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling SamplegpsApi->SamplegpsGetGPSByDeviceId");
 
-            var localVarPath = "/device/id/{DeviceChildIdDefunct}/sample/gps";
+            var localVarPath = "/device/id/{deviceId}/sample/gps";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -617,7 +617,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required
@@ -635,13 +635,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SamplegpsGetGPSByDeviceChildIdDefunct", localVarResponse);
+                Exception exception = ExceptionFactory("SamplegpsGetGPSByDeviceId", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody>(localVarStatusCode,
+            return new ApiResponse<SamplegpsGetGPSByDeviceIDResponseBody>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SamplegpsGetGPSByDeviceChildIdDefunctResponseBody) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SamplegpsGetGPSByDeviceChildIdDefunctResponseBody)));
+                (SamplegpsGetGPSByDeviceIDResponseBody) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SamplegpsGetGPSByDeviceIDResponseBody)));
         }
 
         /// <summary>

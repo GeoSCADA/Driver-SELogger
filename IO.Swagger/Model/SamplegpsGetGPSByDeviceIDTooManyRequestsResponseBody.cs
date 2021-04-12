@@ -28,24 +28,24 @@ namespace IO.Swagger.Model
     /// Too many requests
     /// </summary>
     [DataContract]
-    public partial class SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody :  IEquatable<SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody>, IValidatableObject
+    public partial class SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody :  IEquatable<SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody() { }
+        protected SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody" /> class.
         /// </summary>
         /// <param name="message">Message of error (required).</param>
         /// <param name="requestId">Request ID (required).</param>
-        public SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody(string message = default(string), string requestId = default(string))
+        public SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody(string message = default(string), string requestId = default(string))
         {
             // to ensure "message" is required (not null)
             if (message == null)
             {
-                throw new InvalidDataException("message is a required property for SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody and cannot be null");
+                throw new InvalidDataException("message is a required property for SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody and cannot be null");
             }
             else
             {
@@ -54,7 +54,7 @@ namespace IO.Swagger.Model
             // to ensure "requestId" is required (not null)
             if (requestId == null)
             {
-                throw new InvalidDataException("requestId is a required property for SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody and cannot be null");
+                throw new InvalidDataException("requestId is a required property for SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody and cannot be null");
             }
             else
             {
@@ -83,7 +83,7 @@ namespace IO.Swagger.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody {\n");
+            sb.Append("class SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("}\n");
@@ -106,15 +106,15 @@ namespace IO.Swagger.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody);
+            return this.Equals(input as SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody);
         }
 
         /// <summary>
-        /// Returns true if SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody instances are equal
+        /// Returns true if SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody instances are equal
         /// </summary>
-        /// <param name="input">Instance of SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody to be compared</param>
+        /// <param name="input">Instance of SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SamplegpsGetGPSByDeviceChildIdDefunctTooManyRequestsResponseBody input)
+        public bool Equals(SamplegpsGetGPSByDeviceIDTooManyRequestsResponseBody input)
         {
             if (input == null)
                 return false;

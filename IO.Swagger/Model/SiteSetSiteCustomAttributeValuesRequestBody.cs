@@ -34,7 +34,7 @@ namespace IO.Swagger.Model
         /// Initializes a new instance of the <see cref="SiteSetSiteCustomAttributeValuesRequestBody" /> class.
         /// </summary>
         /// <param name="attributes">attributes.</param>
-        public SiteSetSiteCustomAttributeValuesRequestBody(List<StoredSiteCustomAtrtributeValueRequestBody> attributes = default(List<StoredSiteCustomAtrtributeValueRequestBody>))
+        public SiteSetSiteCustomAttributeValuesRequestBody(List<StoredSiteCustomAttributeValueRequestBody> attributes = default(List<StoredSiteCustomAttributeValueRequestBody>))
         {
             this.Attributes = attributes;
         }
@@ -43,7 +43,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Attributes
         /// </summary>
         [DataMember(Name="attributes", EmitDefaultValue=false)]
-        public List<StoredSiteCustomAtrtributeValueRequestBody> Attributes { get; set; }
+        public List<StoredSiteCustomAttributeValueRequestBody> Attributes { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

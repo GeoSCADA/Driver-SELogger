@@ -31,11 +31,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new logs from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>DevicelogStoredDeviceLogResponseCollection</returns>
-        DevicelogStoredDeviceLogResponseCollection DevicelogGetDeviceLogs (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        DevicelogStoredDeviceLogResponseCollection DevicelogGetDeviceLogs (int? deviceId, string authorization, int? lastDeliveredId = null);
 
         /// <summary>
         /// getDeviceLogs devicelog
@@ -44,11 +44,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new logs from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>ApiResponse of DevicelogStoredDeviceLogResponseCollection</returns>
-        ApiResponse<DevicelogStoredDeviceLogResponseCollection> DevicelogGetDeviceLogsWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        ApiResponse<DevicelogStoredDeviceLogResponseCollection> DevicelogGetDeviceLogsWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null);
         /// <summary>
         /// getLastDeviceLog devicelog
         /// </summary>
@@ -56,10 +56,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known log record from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>DevicelogStoredDeviceLogResponseCollection</returns>
-        DevicelogStoredDeviceLogResponseCollection DevicelogGetLastDeviceLog (int? DeviceChildIdDefunct, string authorization);
+        DevicelogStoredDeviceLogResponseCollection DevicelogGetLastDeviceLog (int? deviceId, string authorization);
 
         /// <summary>
         /// getLastDeviceLog devicelog
@@ -68,10 +68,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known log record from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of DevicelogStoredDeviceLogResponseCollection</returns>
-        ApiResponse<DevicelogStoredDeviceLogResponseCollection> DevicelogGetLastDeviceLogWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        ApiResponse<DevicelogStoredDeviceLogResponseCollection> DevicelogGetLastDeviceLogWithHttpInfo (int? deviceId, string authorization);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -81,11 +81,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new logs from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>Task of DevicelogStoredDeviceLogResponseCollection</returns>
-        System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetDeviceLogsAsync (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetDeviceLogsAsync (int? deviceId, string authorization, int? lastDeliveredId = null);
 
         /// <summary>
         /// getDeviceLogs devicelog
@@ -94,11 +94,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new logs from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>Task of ApiResponse (DevicelogStoredDeviceLogResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetDeviceLogsAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetDeviceLogsAsyncWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null);
         /// <summary>
         /// getLastDeviceLog devicelog
         /// </summary>
@@ -106,10 +106,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known log record from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of DevicelogStoredDeviceLogResponseCollection</returns>
-        System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetLastDeviceLogAsync (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetLastDeviceLogAsync (int? deviceId, string authorization);
 
         /// <summary>
         /// getLastDeviceLog devicelog
@@ -118,10 +118,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known log record from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (DevicelogStoredDeviceLogResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetLastDeviceLogAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetLastDeviceLogAsyncWithHttpInfo (int? deviceId, string authorization);
         #endregion Asynchronous Operations
     }
 
@@ -226,13 +226,13 @@ namespace IO.Swagger.Api
         /// getDeviceLogs devicelog Returns up to 100 new logs from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>DevicelogStoredDeviceLogResponseCollection</returns>
-        public DevicelogStoredDeviceLogResponseCollection DevicelogGetDeviceLogs (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public DevicelogStoredDeviceLogResponseCollection DevicelogGetDeviceLogs (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = DevicelogGetDeviceLogsWithHttpInfo(DeviceChildIdDefunct, authorization, lastDeliveredId);
+             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = DevicelogGetDeviceLogsWithHttpInfo(deviceId, authorization, lastDeliveredId);
              return localVarResponse.Data;
         }
 
@@ -240,20 +240,20 @@ namespace IO.Swagger.Api
         /// getDeviceLogs devicelog Returns up to 100 new logs from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>ApiResponse of DevicelogStoredDeviceLogResponseCollection</returns>
-        public ApiResponse< DevicelogStoredDeviceLogResponseCollection > DevicelogGetDeviceLogsWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public ApiResponse< DevicelogStoredDeviceLogResponseCollection > DevicelogGetDeviceLogsWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicelogApi->DevicelogGetDeviceLogs");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicelogApi->DevicelogGetDeviceLogs");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicelogApi->DevicelogGetDeviceLogs");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/log";
+            var localVarPath = "/device/{deviceId}/log";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -275,7 +275,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (lastDeliveredId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "lastDeliveredId", lastDeliveredId)); // query parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
@@ -307,13 +307,13 @@ namespace IO.Swagger.Api
         /// getDeviceLogs devicelog Returns up to 100 new logs from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>Task of DevicelogStoredDeviceLogResponseCollection</returns>
-        public async System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetDeviceLogsAsync (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public async System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetDeviceLogsAsync (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = await DevicelogGetDeviceLogsAsyncWithHttpInfo(DeviceChildIdDefunct, authorization, lastDeliveredId);
+             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = await DevicelogGetDeviceLogsAsyncWithHttpInfo(deviceId, authorization, lastDeliveredId);
              return localVarResponse.Data;
 
         }
@@ -322,20 +322,20 @@ namespace IO.Swagger.Api
         /// getDeviceLogs devicelog Returns up to 100 new logs from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest log counter from which to start returning samples (optional)</param>
         /// <returns>Task of ApiResponse (DevicelogStoredDeviceLogResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetDeviceLogsAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetDeviceLogsAsyncWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicelogApi->DevicelogGetDeviceLogs");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicelogApi->DevicelogGetDeviceLogs");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicelogApi->DevicelogGetDeviceLogs");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/log";
+            var localVarPath = "/device/{deviceId}/log";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -357,7 +357,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (lastDeliveredId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "lastDeliveredId", lastDeliveredId)); // query parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
@@ -389,12 +389,12 @@ namespace IO.Swagger.Api
         /// getLastDeviceLog devicelog Returns information about the last known log record from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>DevicelogStoredDeviceLogResponseCollection</returns>
-        public DevicelogStoredDeviceLogResponseCollection DevicelogGetLastDeviceLog (int? DeviceChildIdDefunct, string authorization)
+        public DevicelogStoredDeviceLogResponseCollection DevicelogGetLastDeviceLog (int? deviceId, string authorization)
         {
-             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = DevicelogGetLastDeviceLogWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = DevicelogGetLastDeviceLogWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
         }
 
@@ -402,19 +402,19 @@ namespace IO.Swagger.Api
         /// getLastDeviceLog devicelog Returns information about the last known log record from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of DevicelogStoredDeviceLogResponseCollection</returns>
-        public ApiResponse< DevicelogStoredDeviceLogResponseCollection > DevicelogGetLastDeviceLogWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public ApiResponse< DevicelogStoredDeviceLogResponseCollection > DevicelogGetLastDeviceLogWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicelogApi->DevicelogGetLastDeviceLog");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicelogApi->DevicelogGetLastDeviceLog");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicelogApi->DevicelogGetLastDeviceLog");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/lastLog";
+            var localVarPath = "/device/{deviceId}/lastLog";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -436,7 +436,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required
@@ -467,12 +467,12 @@ namespace IO.Swagger.Api
         /// getLastDeviceLog devicelog Returns information about the last known log record from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of DevicelogStoredDeviceLogResponseCollection</returns>
-        public async System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetLastDeviceLogAsync (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<DevicelogStoredDeviceLogResponseCollection> DevicelogGetLastDeviceLogAsync (int? deviceId, string authorization)
         {
-             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = await DevicelogGetLastDeviceLogAsyncWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<DevicelogStoredDeviceLogResponseCollection> localVarResponse = await DevicelogGetLastDeviceLogAsyncWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
 
         }
@@ -481,19 +481,19 @@ namespace IO.Swagger.Api
         /// getLastDeviceLog devicelog Returns information about the last known log record from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last log counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last log counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (DevicelogStoredDeviceLogResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetLastDeviceLogAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<DevicelogStoredDeviceLogResponseCollection>> DevicelogGetLastDeviceLogAsyncWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicelogApi->DevicelogGetLastDeviceLog");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicelogApi->DevicelogGetLastDeviceLog");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicelogApi->DevicelogGetLastDeviceLog");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/lastLog";
+            var localVarPath = "/device/{deviceId}/lastLog";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -515,7 +515,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required

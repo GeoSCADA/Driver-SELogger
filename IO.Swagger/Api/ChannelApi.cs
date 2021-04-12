@@ -75,10 +75,10 @@ namespace IO.Swagger.Api
         /// Returns information about all channels of a specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ChannelStoredChannelResponseCollection</returns>
-        ChannelStoredChannelResponseCollection ChannelGetChannelsByDevice (int? DeviceChildIdDefunct, string authorization);
+        ChannelStoredChannelResponseCollection ChannelGetChannelsByDevice (int? deviceId, string authorization);
 
         /// <summary>
         /// getChannelsByDevice channel
@@ -87,10 +87,10 @@ namespace IO.Swagger.Api
         /// Returns information about all channels of a specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of ChannelStoredChannelResponseCollection</returns>
-        ApiResponse<ChannelStoredChannelResponseCollection> ChannelGetChannelsByDeviceWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        ApiResponse<ChannelStoredChannelResponseCollection> ChannelGetChannelsByDeviceWithHttpInfo (int? deviceId, string authorization);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -144,10 +144,10 @@ namespace IO.Swagger.Api
         /// Returns information about all channels of a specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ChannelStoredChannelResponseCollection</returns>
-        System.Threading.Tasks.Task<ChannelStoredChannelResponseCollection> ChannelGetChannelsByDeviceAsync (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<ChannelStoredChannelResponseCollection> ChannelGetChannelsByDeviceAsync (int? deviceId, string authorization);
 
         /// <summary>
         /// getChannelsByDevice channel
@@ -156,10 +156,10 @@ namespace IO.Swagger.Api
         /// Returns information about all channels of a specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (ChannelStoredChannelResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ChannelStoredChannelResponseCollection>> ChannelGetChannelsByDeviceAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<ApiResponse<ChannelStoredChannelResponseCollection>> ChannelGetChannelsByDeviceAsyncWithHttpInfo (int? deviceId, string authorization);
         #endregion Asynchronous Operations
     }
 
@@ -566,12 +566,12 @@ namespace IO.Swagger.Api
         /// getChannelsByDevice channel Returns information about all channels of a specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ChannelStoredChannelResponseCollection</returns>
-        public ChannelStoredChannelResponseCollection ChannelGetChannelsByDevice (int? DeviceChildIdDefunct, string authorization)
+        public ChannelStoredChannelResponseCollection ChannelGetChannelsByDevice (int? deviceId, string authorization)
         {
-             ApiResponse<ChannelStoredChannelResponseCollection> localVarResponse = ChannelGetChannelsByDeviceWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<ChannelStoredChannelResponseCollection> localVarResponse = ChannelGetChannelsByDeviceWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
         }
 
@@ -579,19 +579,19 @@ namespace IO.Swagger.Api
         /// getChannelsByDevice channel Returns information about all channels of a specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of ChannelStoredChannelResponseCollection</returns>
-        public ApiResponse< ChannelStoredChannelResponseCollection > ChannelGetChannelsByDeviceWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public ApiResponse< ChannelStoredChannelResponseCollection > ChannelGetChannelsByDeviceWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling ChannelApi->ChannelGetChannelsByDevice");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ChannelApi->ChannelGetChannelsByDevice");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling ChannelApi->ChannelGetChannelsByDevice");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/channels";
+            var localVarPath = "/device/{deviceId}/channels";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -613,7 +613,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required
@@ -644,12 +644,12 @@ namespace IO.Swagger.Api
         /// getChannelsByDevice channel Returns information about all channels of a specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ChannelStoredChannelResponseCollection</returns>
-        public async System.Threading.Tasks.Task<ChannelStoredChannelResponseCollection> ChannelGetChannelsByDeviceAsync (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<ChannelStoredChannelResponseCollection> ChannelGetChannelsByDeviceAsync (int? deviceId, string authorization)
         {
-             ApiResponse<ChannelStoredChannelResponseCollection> localVarResponse = await ChannelGetChannelsByDeviceAsyncWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<ChannelStoredChannelResponseCollection> localVarResponse = await ChannelGetChannelsByDeviceAsyncWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
 
         }
@@ -658,19 +658,19 @@ namespace IO.Swagger.Api
         /// getChannelsByDevice channel Returns information about all channels of a specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose channels should be returned</param>
+        /// <param name="deviceId">ID of the device whose channels should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (ChannelStoredChannelResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ChannelStoredChannelResponseCollection>> ChannelGetChannelsByDeviceAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<ChannelStoredChannelResponseCollection>> ChannelGetChannelsByDeviceAsyncWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling ChannelApi->ChannelGetChannelsByDevice");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ChannelApi->ChannelGetChannelsByDevice");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling ChannelApi->ChannelGetChannelsByDevice");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/channels";
+            var localVarPath = "/device/{deviceId}/channels";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -692,7 +692,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required

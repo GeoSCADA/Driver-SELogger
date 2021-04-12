@@ -171,6 +171,31 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of SampleGetSamplesScalarBatchByStreamResponseBody</returns>
         ApiResponse<SampleGetSamplesScalarBatchByStreamResponseBody> SampleGetSamplesScalarBatchByStreamWithHttpInfo (int? streamId, int? sampleDate, string authorization);
         /// <summary>
+        /// getSamplesScalarBySite sample
+        /// </summary>
+        /// <remarks>
+        /// Returns up to 100 samples from the specified site
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>SampleStoredSampleScalarResponseCollection</returns>
+        SampleStoredSampleScalarResponseCollection SampleGetSamplesScalarBySite (int? siteId, string authorization, int? lastSampleId = null);
+
+        /// <summary>
+        /// getSamplesScalarBySite sample
+        /// </summary>
+        /// <remarks>
+        /// Returns up to 100 samples from the specified site
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>ApiResponse of SampleStoredSampleScalarResponseCollection</returns>
+        ApiResponse<SampleStoredSampleScalarResponseCollection> SampleGetSamplesScalarBySiteWithHttpInfo (int? siteId, string authorization, int? lastSampleId = null);
+        /// <summary>
         /// getSamplesScalarByStream sample
         /// </summary>
         /// <remarks>
@@ -368,6 +393,31 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (SampleGetSamplesScalarBatchByStreamResponseBody)</returns>
         System.Threading.Tasks.Task<ApiResponse<SampleGetSamplesScalarBatchByStreamResponseBody>> SampleGetSamplesScalarBatchByStreamAsyncWithHttpInfo (int? streamId, int? sampleDate, string authorization);
+        /// <summary>
+        /// getSamplesScalarBySite sample
+        /// </summary>
+        /// <remarks>
+        /// Returns up to 100 samples from the specified site
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>Task of SampleStoredSampleScalarResponseCollection</returns>
+        System.Threading.Tasks.Task<SampleStoredSampleScalarResponseCollection> SampleGetSamplesScalarBySiteAsync (int? siteId, string authorization, int? lastSampleId = null);
+
+        /// <summary>
+        /// getSamplesScalarBySite sample
+        /// </summary>
+        /// <remarks>
+        /// Returns up to 100 samples from the specified site
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>Task of ApiResponse (SampleStoredSampleScalarResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SampleStoredSampleScalarResponseCollection>> SampleGetSamplesScalarBySiteAsyncWithHttpInfo (int? siteId, string authorization, int? lastSampleId = null);
         /// <summary>
         /// getSamplesScalarByStream sample
         /// </summary>
@@ -1480,6 +1530,169 @@ namespace IO.Swagger.Api
             return new ApiResponse<SampleGetSamplesScalarBatchByStreamResponseBody>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (SampleGetSamplesScalarBatchByStreamResponseBody) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SampleGetSamplesScalarBatchByStreamResponseBody)));
+        }
+
+        /// <summary>
+        /// getSamplesScalarBySite sample Returns up to 100 samples from the specified site
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>SampleStoredSampleScalarResponseCollection</returns>
+        public SampleStoredSampleScalarResponseCollection SampleGetSamplesScalarBySite (int? siteId, string authorization, int? lastSampleId = null)
+        {
+             ApiResponse<SampleStoredSampleScalarResponseCollection> localVarResponse = SampleGetSamplesScalarBySiteWithHttpInfo(siteId, authorization, lastSampleId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// getSamplesScalarBySite sample Returns up to 100 samples from the specified site
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>ApiResponse of SampleStoredSampleScalarResponseCollection</returns>
+        public ApiResponse< SampleStoredSampleScalarResponseCollection > SampleGetSamplesScalarBySiteWithHttpInfo (int? siteId, string authorization, int? lastSampleId = null)
+        {
+            // verify the required parameter 'siteId' is set
+            if (siteId == null)
+                throw new ApiException(400, "Missing required parameter 'siteId' when calling SampleApi->SampleGetSamplesScalarBySite");
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling SampleApi->SampleGetSamplesScalarBySite");
+
+            var localVarPath = "/site/{siteId}/sample";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (siteId != null) localVarPathParams.Add("siteId", this.Configuration.ApiClient.ParameterToString(siteId)); // path parameter
+            if (lastSampleId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "lastSampleId", lastSampleId)); // query parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+
+            // authentication (jwt_header_Authorization) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = this.Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SampleGetSamplesScalarBySite", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<SampleStoredSampleScalarResponseCollection>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (SampleStoredSampleScalarResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SampleStoredSampleScalarResponseCollection)));
+        }
+
+        /// <summary>
+        /// getSamplesScalarBySite sample Returns up to 100 samples from the specified site
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>Task of SampleStoredSampleScalarResponseCollection</returns>
+        public async System.Threading.Tasks.Task<SampleStoredSampleScalarResponseCollection> SampleGetSamplesScalarBySiteAsync (int? siteId, string authorization, int? lastSampleId = null)
+        {
+             ApiResponse<SampleStoredSampleScalarResponseCollection> localVarResponse = await SampleGetSamplesScalarBySiteAsyncWithHttpInfo(siteId, authorization, lastSampleId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// getSamplesScalarBySite sample Returns up to 100 samples from the specified site
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="siteId">ID of the site whose recent samples should be returned</param>
+        /// <param name="authorization">JWT used for authentication</param>
+        /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
+        /// <returns>Task of ApiResponse (SampleStoredSampleScalarResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<SampleStoredSampleScalarResponseCollection>> SampleGetSamplesScalarBySiteAsyncWithHttpInfo (int? siteId, string authorization, int? lastSampleId = null)
+        {
+            // verify the required parameter 'siteId' is set
+            if (siteId == null)
+                throw new ApiException(400, "Missing required parameter 'siteId' when calling SampleApi->SampleGetSamplesScalarBySite");
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling SampleApi->SampleGetSamplesScalarBySite");
+
+            var localVarPath = "/site/{siteId}/sample";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (siteId != null) localVarPathParams.Add("siteId", this.Configuration.ApiClient.ParameterToString(siteId)); // path parameter
+            if (lastSampleId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "lastSampleId", lastSampleId)); // query parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+
+            // authentication (jwt_header_Authorization) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = this.Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SampleGetSamplesScalarBySite", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<SampleStoredSampleScalarResponseCollection>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (SampleStoredSampleScalarResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SampleStoredSampleScalarResponseCollection)));
         }
 
         /// <summary>

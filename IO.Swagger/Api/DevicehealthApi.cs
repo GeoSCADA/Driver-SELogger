@@ -31,11 +31,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>DevicehealthStoredDeviceHealthResponseCollection</returns>
-        DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetDeviceHealths (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetDeviceHealths (int? deviceId, string authorization, int? lastDeliveredId = null);
 
         /// <summary>
         /// getDeviceHealths devicehealth
@@ -44,11 +44,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>ApiResponse of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetDeviceHealthsWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetDeviceHealthsWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null);
         /// <summary>
         /// getLastDeviceHealth devicehealth
         /// </summary>
@@ -56,10 +56,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known health counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>DevicehealthStoredDeviceHealthResponseCollection</returns>
-        DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetLastDeviceHealth (int? DeviceChildIdDefunct, string authorization);
+        DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetLastDeviceHealth (int? deviceId, string authorization);
 
         /// <summary>
         /// getLastDeviceHealth devicehealth
@@ -68,10 +68,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known health counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetLastDeviceHealthWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetLastDeviceHealthWithHttpInfo (int? deviceId, string authorization);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -81,11 +81,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>Task of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetDeviceHealthsAsync (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetDeviceHealthsAsync (int? deviceId, string authorization, int? lastDeliveredId = null);
 
         /// <summary>
         /// getDeviceHealths devicehealth
@@ -94,11 +94,11 @@ namespace IO.Swagger.Api
         /// Returns up to 100 new counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>Task of ApiResponse (DevicehealthStoredDeviceHealthResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetDeviceHealthsAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null);
+        System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetDeviceHealthsAsyncWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null);
         /// <summary>
         /// getLastDeviceHealth devicehealth
         /// </summary>
@@ -106,10 +106,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known health counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetLastDeviceHealthAsync (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetLastDeviceHealthAsync (int? deviceId, string authorization);
 
         /// <summary>
         /// getLastDeviceHealth devicehealth
@@ -118,10 +118,10 @@ namespace IO.Swagger.Api
         /// Returns information about the last known health counters from the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (DevicehealthStoredDeviceHealthResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetLastDeviceHealthAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetLastDeviceHealthAsyncWithHttpInfo (int? deviceId, string authorization);
         #endregion Asynchronous Operations
     }
 
@@ -226,13 +226,13 @@ namespace IO.Swagger.Api
         /// getDeviceHealths devicehealth Returns up to 100 new counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>DevicehealthStoredDeviceHealthResponseCollection</returns>
-        public DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetDeviceHealths (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetDeviceHealths (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = DevicehealthGetDeviceHealthsWithHttpInfo(DeviceChildIdDefunct, authorization, lastDeliveredId);
+             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = DevicehealthGetDeviceHealthsWithHttpInfo(deviceId, authorization, lastDeliveredId);
              return localVarResponse.Data;
         }
 
@@ -240,20 +240,20 @@ namespace IO.Swagger.Api
         /// getDeviceHealths devicehealth Returns up to 100 new counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>ApiResponse of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        public ApiResponse< DevicehealthStoredDeviceHealthResponseCollection > DevicehealthGetDeviceHealthsWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public ApiResponse< DevicehealthStoredDeviceHealthResponseCollection > DevicehealthGetDeviceHealthsWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicehealthApi->DevicehealthGetDeviceHealths");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicehealthApi->DevicehealthGetDeviceHealths");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicehealthApi->DevicehealthGetDeviceHealths");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/health";
+            var localVarPath = "/device/{deviceId}/health";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -275,7 +275,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (lastDeliveredId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "lastDeliveredId", lastDeliveredId)); // query parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
@@ -307,13 +307,13 @@ namespace IO.Swagger.Api
         /// getDeviceHealths devicehealth Returns up to 100 new counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>Task of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        public async System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetDeviceHealthsAsync (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public async System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetDeviceHealthsAsync (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = await DevicehealthGetDeviceHealthsAsyncWithHttpInfo(DeviceChildIdDefunct, authorization, lastDeliveredId);
+             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = await DevicehealthGetDeviceHealthsAsyncWithHttpInfo(deviceId, authorization, lastDeliveredId);
              return localVarResponse.Data;
 
         }
@@ -322,20 +322,20 @@ namespace IO.Swagger.Api
         /// getDeviceHealths devicehealth Returns up to 100 new counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastDeliveredId">ID of the oldest health counter from which to start returning samples (optional)</param>
         /// <returns>Task of ApiResponse (DevicehealthStoredDeviceHealthResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetDeviceHealthsAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization, int? lastDeliveredId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetDeviceHealthsAsyncWithHttpInfo (int? deviceId, string authorization, int? lastDeliveredId = null)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicehealthApi->DevicehealthGetDeviceHealths");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicehealthApi->DevicehealthGetDeviceHealths");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicehealthApi->DevicehealthGetDeviceHealths");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/health";
+            var localVarPath = "/device/{deviceId}/health";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -357,7 +357,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (lastDeliveredId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "lastDeliveredId", lastDeliveredId)); // query parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
@@ -389,12 +389,12 @@ namespace IO.Swagger.Api
         /// getLastDeviceHealth devicehealth Returns information about the last known health counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>DevicehealthStoredDeviceHealthResponseCollection</returns>
-        public DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetLastDeviceHealth (int? DeviceChildIdDefunct, string authorization)
+        public DevicehealthStoredDeviceHealthResponseCollection DevicehealthGetLastDeviceHealth (int? deviceId, string authorization)
         {
-             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = DevicehealthGetLastDeviceHealthWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = DevicehealthGetLastDeviceHealthWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
         }
 
@@ -402,19 +402,19 @@ namespace IO.Swagger.Api
         /// getLastDeviceHealth devicehealth Returns information about the last known health counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        public ApiResponse< DevicehealthStoredDeviceHealthResponseCollection > DevicehealthGetLastDeviceHealthWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public ApiResponse< DevicehealthStoredDeviceHealthResponseCollection > DevicehealthGetLastDeviceHealthWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicehealthApi->DevicehealthGetLastDeviceHealth");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicehealthApi->DevicehealthGetLastDeviceHealth");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicehealthApi->DevicehealthGetLastDeviceHealth");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/lastHealth";
+            var localVarPath = "/device/{deviceId}/lastHealth";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -436,7 +436,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required
@@ -467,12 +467,12 @@ namespace IO.Swagger.Api
         /// getLastDeviceHealth devicehealth Returns information about the last known health counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of DevicehealthStoredDeviceHealthResponseCollection</returns>
-        public async System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetLastDeviceHealthAsync (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<DevicehealthStoredDeviceHealthResponseCollection> DevicehealthGetLastDeviceHealthAsync (int? deviceId, string authorization)
         {
-             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = await DevicehealthGetLastDeviceHealthAsyncWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<DevicehealthStoredDeviceHealthResponseCollection> localVarResponse = await DevicehealthGetLastDeviceHealthAsyncWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
 
         }
@@ -481,19 +481,19 @@ namespace IO.Swagger.Api
         /// getLastDeviceHealth devicehealth Returns information about the last known health counters from the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose last health counters should be returned</param>
+        /// <param name="deviceId">ID of the device whose last health counters should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (DevicehealthStoredDeviceHealthResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetLastDeviceHealthAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<DevicehealthStoredDeviceHealthResponseCollection>> DevicehealthGetLastDeviceHealthAsyncWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DevicehealthApi->DevicehealthGetLastDeviceHealth");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DevicehealthApi->DevicehealthGetLastDeviceHealth");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DevicehealthApi->DevicehealthGetLastDeviceHealth");
 
-            var localVarPath = "/device/{DeviceChildIdDefunct}/lastHealth";
+            var localVarPath = "/device/{deviceId}/lastHealth";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -515,7 +515,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required
