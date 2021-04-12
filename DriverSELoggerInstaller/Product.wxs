@@ -29,7 +29,9 @@
               <File Id="Microsoft.IdentityModel.Tokens.dll" Name="Microsoft.IdentityModel.Tokens.dll" Source="..\DriverSELogger\bin\x64\Debug\Microsoft.IdentityModel.Tokens.dll" />
               <File Id="System.Buffers.dll" Name="System.Buffers.dll" Source="..\DriverSELogger\bin\x64\Debug\System.Buffers.dll" />
               <File Id="System.IdentityModel.Tokens.Jwt.dll" Name="System.IdentityModel.Tokens.Jwt.dll" Source="..\DriverSELogger\bin\x64\Debug\System.IdentityModel.Tokens.Jwt.dll" />
+              <!-- Not required - for .Net 4.8 target at least.
               <File Id="System.Net.Http.dll" Name="System.Net.Http.dll" Source="..\DriverSELogger\bin\x64\Debug\System.Net.Http.dll" />
+              -->
               <File Id="System.Runtime.CompilerServices.Unsafe.dll" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="..\DriverSELogger\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
 
               <RegistryKey Root="HKLM" Key="SOFTWARE\Schneider Electric\ClearSCADA\DriverSELogger">
