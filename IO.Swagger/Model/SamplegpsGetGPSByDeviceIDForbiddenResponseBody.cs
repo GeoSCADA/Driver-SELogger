@@ -28,24 +28,24 @@ namespace IO.Swagger.Model
     /// Forbidden
     /// </summary>
     [DataContract]
-    public partial class SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody :  IEquatable<SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody>, IValidatableObject
+    public partial class SamplegpsGetGPSByDeviceIDForbiddenResponseBody :  IEquatable<SamplegpsGetGPSByDeviceIDForbiddenResponseBody>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDForbiddenResponseBody" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody() { }
+        protected SamplegpsGetGPSByDeviceIDForbiddenResponseBody() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDForbiddenResponseBody" /> class.
         /// </summary>
         /// <param name="message">Message of error (required).</param>
         /// <param name="requestId">Request ID (required).</param>
-        public SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody(string message = default(string), string requestId = default(string))
+        public SamplegpsGetGPSByDeviceIDForbiddenResponseBody(string message = default(string), string requestId = default(string))
         {
             // to ensure "message" is required (not null)
             if (message == null)
             {
-                throw new InvalidDataException("message is a required property for SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody and cannot be null");
+                throw new InvalidDataException("message is a required property for SamplegpsGetGPSByDeviceIDForbiddenResponseBody and cannot be null");
             }
             else
             {
@@ -54,7 +54,7 @@ namespace IO.Swagger.Model
             // to ensure "requestId" is required (not null)
             if (requestId == null)
             {
-                throw new InvalidDataException("requestId is a required property for SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody and cannot be null");
+                throw new InvalidDataException("requestId is a required property for SamplegpsGetGPSByDeviceIDForbiddenResponseBody and cannot be null");
             }
             else
             {
@@ -83,7 +83,7 @@ namespace IO.Swagger.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody {\n");
+            sb.Append("class SamplegpsGetGPSByDeviceIDForbiddenResponseBody {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("}\n");
@@ -106,15 +106,15 @@ namespace IO.Swagger.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody);
+            return this.Equals(input as SamplegpsGetGPSByDeviceIDForbiddenResponseBody);
         }
 
         /// <summary>
-        /// Returns true if SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody instances are equal
+        /// Returns true if SamplegpsGetGPSByDeviceIDForbiddenResponseBody instances are equal
         /// </summary>
-        /// <param name="input">Instance of SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody to be compared</param>
+        /// <param name="input">Instance of SamplegpsGetGPSByDeviceIDForbiddenResponseBody to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SamplegpsGetGPSByDeviceChildIdDefunctForbiddenResponseBody input)
+        public bool Equals(SamplegpsGetGPSByDeviceIDForbiddenResponseBody input)
         {
             if (input == null)
                 return false;

@@ -129,11 +129,9 @@ namespace IO.Swagger.Model
             {
                 this.SampleInterval = sampleInterval;
             }
-			// to ensure "transmissionInterval" is required (not null)
-#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
-			if (transmissionInterval == null)
-#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
-			{
+            // to ensure "transmissionInterval" is required (not null)
+            if (transmissionInterval == null)
+            {
                 throw new InvalidDataException("transmissionInterval is a required property for StoredThresholdLevelResponseBody and cannot be null");
             }
             else
@@ -326,10 +324,8 @@ namespace IO.Swagger.Model
                 ) && 
                 (
                     this.TransmissionInterval == input.TransmissionInterval ||
-#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
-					(this.TransmissionInterval != null &&
-#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
-					this.TransmissionInterval.Equals(input.TransmissionInterval))
+                    (this.TransmissionInterval != null &&
+                    this.TransmissionInterval.Equals(input.TransmissionInterval))
                 ) && 
                 (
                     this.TransmitImmediately == input.TransmitImmediately ||

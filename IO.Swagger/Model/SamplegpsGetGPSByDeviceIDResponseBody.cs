@@ -25,28 +25,28 @@ using SwaggerDateConverter = IO.Swagger.Client.SwaggerDateConverter;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// GetGPSByDeviceChildIdDefunctResponseBody result type (default view)
+    /// GetGPSByDeviceIdResponseBody result type (default view)
     /// </summary>
     [DataContract]
-    public partial class SamplegpsGetGPSByDeviceChildIdDefunctResponseBody :  IEquatable<SamplegpsGetGPSByDeviceChildIdDefunctResponseBody>, IValidatableObject
+    public partial class SamplegpsGetGPSByDeviceIDResponseBody :  IEquatable<SamplegpsGetGPSByDeviceIDResponseBody>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDResponseBody" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SamplegpsGetGPSByDeviceChildIdDefunctResponseBody() { }
+        protected SamplegpsGetGPSByDeviceIDResponseBody() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDResponseBody" /> class.
         /// </summary>
         /// <param name="gps">gps (required).</param>
         /// <param name="id">ID is the unique id of the sample GPS. (required).</param>
         /// <param name="streamId">Stream ID (required).</param>
-        public SamplegpsGetGPSByDeviceChildIdDefunctResponseBody(GPSResponseBody gps = default(GPSResponseBody), long? id = default(long?), int? streamId = default(int?))
+        public SamplegpsGetGPSByDeviceIDResponseBody(GPSResponseBody gps = default(GPSResponseBody), long? id = default(long?), int? streamId = default(int?))
         {
             // to ensure "gps" is required (not null)
             if (gps == null)
             {
-                throw new InvalidDataException("gps is a required property for SamplegpsGetGPSByDeviceChildIdDefunctResponseBody and cannot be null");
+                throw new InvalidDataException("gps is a required property for SamplegpsGetGPSByDeviceIDResponseBody and cannot be null");
             }
             else
             {
@@ -55,7 +55,7 @@ namespace IO.Swagger.Model
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new InvalidDataException("id is a required property for SamplegpsGetGPSByDeviceChildIdDefunctResponseBody and cannot be null");
+                throw new InvalidDataException("id is a required property for SamplegpsGetGPSByDeviceIDResponseBody and cannot be null");
             }
             else
             {
@@ -64,7 +64,7 @@ namespace IO.Swagger.Model
             // to ensure "streamId" is required (not null)
             if (streamId == null)
             {
-                throw new InvalidDataException("streamId is a required property for SamplegpsGetGPSByDeviceChildIdDefunctResponseBody and cannot be null");
+                throw new InvalidDataException("streamId is a required property for SamplegpsGetGPSByDeviceIDResponseBody and cannot be null");
             }
             else
             {
@@ -99,7 +99,7 @@ namespace IO.Swagger.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SamplegpsGetGPSByDeviceChildIdDefunctResponseBody {\n");
+            sb.Append("class SamplegpsGetGPSByDeviceIDResponseBody {\n");
             sb.Append("  Gps: ").Append(Gps).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  StreamId: ").Append(StreamId).Append("\n");
@@ -123,15 +123,15 @@ namespace IO.Swagger.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SamplegpsGetGPSByDeviceChildIdDefunctResponseBody);
+            return this.Equals(input as SamplegpsGetGPSByDeviceIDResponseBody);
         }
 
         /// <summary>
-        /// Returns true if SamplegpsGetGPSByDeviceChildIdDefunctResponseBody instances are equal
+        /// Returns true if SamplegpsGetGPSByDeviceIDResponseBody instances are equal
         /// </summary>
-        /// <param name="input">Instance of SamplegpsGetGPSByDeviceChildIdDefunctResponseBody to be compared</param>
+        /// <param name="input">Instance of SamplegpsGetGPSByDeviceIDResponseBody to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SamplegpsGetGPSByDeviceChildIdDefunctResponseBody input)
+        public bool Equals(SamplegpsGetGPSByDeviceIDResponseBody input)
         {
             if (input == null)
                 return false;

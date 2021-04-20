@@ -52,10 +52,10 @@ namespace IO.Swagger.Api
         /// Returns information about the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>DeviceGetDeviceByIDResponseBody</returns>
-        DeviceGetDeviceByIDResponseBody DeviceGetDeviceById (int? DeviceChildIdDefunct, string authorization);
+        DeviceGetDeviceByIDResponseBody DeviceGetDeviceById (int? deviceId, string authorization);
 
         /// <summary>
         /// getDeviceById device
@@ -64,10 +64,10 @@ namespace IO.Swagger.Api
         /// Returns information about the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of DeviceGetDeviceByIDResponseBody</returns>
-        ApiResponse<DeviceGetDeviceByIDResponseBody> DeviceGetDeviceByIdWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        ApiResponse<DeviceGetDeviceByIDResponseBody> DeviceGetDeviceByIdWithHttpInfo (int? deviceId, string authorization);
         /// <summary>
         /// getDeviceBySerialNumber device
         /// </summary>
@@ -144,10 +144,10 @@ namespace IO.Swagger.Api
         /// Returns information about the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of DeviceGetDeviceByIDResponseBody</returns>
-        System.Threading.Tasks.Task<DeviceGetDeviceByIDResponseBody> DeviceGetDeviceByIdAsync (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<DeviceGetDeviceByIDResponseBody> DeviceGetDeviceByIdAsync (int? deviceId, string authorization);
 
         /// <summary>
         /// getDeviceById device
@@ -156,10 +156,10 @@ namespace IO.Swagger.Api
         /// Returns information about the specified device
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (DeviceGetDeviceByIDResponseBody)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceGetDeviceByIDResponseBody>> DeviceGetDeviceByIdAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization);
+        System.Threading.Tasks.Task<ApiResponse<DeviceGetDeviceByIDResponseBody>> DeviceGetDeviceByIdAsyncWithHttpInfo (int? deviceId, string authorization);
         /// <summary>
         /// getDeviceBySerialNumber device
         /// </summary>
@@ -455,12 +455,12 @@ namespace IO.Swagger.Api
         /// getDeviceById device Returns information about the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>DeviceGetDeviceByIDResponseBody</returns>
-        public DeviceGetDeviceByIDResponseBody DeviceGetDeviceById (int? DeviceChildIdDefunct, string authorization)
+        public DeviceGetDeviceByIDResponseBody DeviceGetDeviceById (int? deviceId, string authorization)
         {
-             ApiResponse<DeviceGetDeviceByIDResponseBody> localVarResponse = DeviceGetDeviceByIdWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<DeviceGetDeviceByIDResponseBody> localVarResponse = DeviceGetDeviceByIdWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
         }
 
@@ -468,19 +468,19 @@ namespace IO.Swagger.Api
         /// getDeviceById device Returns information about the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>ApiResponse of DeviceGetDeviceByIDResponseBody</returns>
-        public ApiResponse< DeviceGetDeviceByIDResponseBody > DeviceGetDeviceByIdWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public ApiResponse< DeviceGetDeviceByIDResponseBody > DeviceGetDeviceByIdWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DeviceApi->DeviceGetDeviceById");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->DeviceGetDeviceById");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DeviceApi->DeviceGetDeviceById");
 
-            var localVarPath = "/device/id/{DeviceChildIdDefunct}";
+            var localVarPath = "/device/id/{deviceId}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -502,7 +502,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required
@@ -533,12 +533,12 @@ namespace IO.Swagger.Api
         /// getDeviceById device Returns information about the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of DeviceGetDeviceByIDResponseBody</returns>
-        public async System.Threading.Tasks.Task<DeviceGetDeviceByIDResponseBody> DeviceGetDeviceByIdAsync (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<DeviceGetDeviceByIDResponseBody> DeviceGetDeviceByIdAsync (int? deviceId, string authorization)
         {
-             ApiResponse<DeviceGetDeviceByIDResponseBody> localVarResponse = await DeviceGetDeviceByIdAsyncWithHttpInfo(DeviceChildIdDefunct, authorization);
+             ApiResponse<DeviceGetDeviceByIDResponseBody> localVarResponse = await DeviceGetDeviceByIdAsyncWithHttpInfo(deviceId, authorization);
              return localVarResponse.Data;
 
         }
@@ -547,19 +547,19 @@ namespace IO.Swagger.Api
         /// getDeviceById device Returns information about the specified device
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="DeviceChildIdDefunct">ID of the device whose information should be returned</param>
+        /// <param name="deviceId">ID of the device whose information should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
         /// <returns>Task of ApiResponse (DeviceGetDeviceByIDResponseBody)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceGetDeviceByIDResponseBody>> DeviceGetDeviceByIdAsyncWithHttpInfo (int? DeviceChildIdDefunct, string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceGetDeviceByIDResponseBody>> DeviceGetDeviceByIdAsyncWithHttpInfo (int? deviceId, string authorization)
         {
-            // verify the required parameter 'DeviceChildIdDefunct' is set
-            if (DeviceChildIdDefunct == null)
-                throw new ApiException(400, "Missing required parameter 'DeviceChildIdDefunct' when calling DeviceApi->DeviceGetDeviceById");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->DeviceGetDeviceById");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling DeviceApi->DeviceGetDeviceById");
 
-            var localVarPath = "/device/id/{DeviceChildIdDefunct}";
+            var localVarPath = "/device/id/{deviceId}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -581,7 +581,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (DeviceChildIdDefunct != null) localVarPathParams.Add("DeviceChildIdDefunct", this.Configuration.ApiClient.ParameterToString(DeviceChildIdDefunct)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", this.Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (jwt_header_Authorization) required

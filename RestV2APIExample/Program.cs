@@ -21,9 +21,7 @@ namespace RestAPIExample
         /// Fill here the right API key and secret
         /// </summary>
         private const string API_KEY = "<*** Put your key here ***>";
-        private const string API_SECRET = "<*** Put yourr secret here ***>";
-
-
+        private const string API_SECRET = "<*** Put your secret here ***>";
 
         public static async Task Main()
         {
@@ -95,7 +93,7 @@ namespace RestAPIExample
                 {
                     foreach (var channel in channels)
                     {
-                        await Console.Out.WriteLineAsync($"Found Channel Id: {channel.Id}, DisplayName: { channel.DisplayName}, Device ID: {channel.DeviceChildIdDefunct}, Type: {channel.TypeDisplayName}, Status: {channel.DisplayStatusName}");
+                        await Console.Out.WriteLineAsync($"Found Channel Id: {channel.Id}, DisplayName: { channel.DisplayName}, Device ID: {channel.DeviceId}, Type: {channel.TypeDisplayName}, Status: {channel.DisplayStatusName}");
                     }
                 }
 

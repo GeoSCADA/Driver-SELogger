@@ -32,8 +32,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        StreamStoredStreamCustomAtrtributeValueResponseCollection StreamGetAllStreamCustomAttributeValues (string authorization);
+        /// <returns>StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        StreamStoredStreamCustomAttributeValueResponseCollection StreamGetAllStreamCustomAttributeValues (string authorization);
 
         /// <summary>
         /// getAllStreamCustomAttributeValues stream
@@ -43,8 +43,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetAllStreamCustomAttributeValuesWithHttpInfo (string authorization);
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetAllStreamCustomAttributeValuesWithHttpInfo (string authorization);
         /// <summary>
         /// getAllStreamCustomAttributesNames stream
         /// </summary>
@@ -53,8 +53,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeNameResponseCollection</returns>
-        StreamStoredStreamCustomAtrtributeNameResponseCollection StreamGetAllStreamCustomAttributesNames (string authorization);
+        /// <returns>StreamStoredStreamCustomAttributeNameResponseCollection</returns>
+        StreamStoredStreamCustomAttributeNameResponseCollection StreamGetAllStreamCustomAttributesNames (string authorization);
 
         /// <summary>
         /// getAllStreamCustomAttributesNames stream
@@ -64,8 +64,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeNameResponseCollection</returns>
-        ApiResponse<StreamStoredStreamCustomAtrtributeNameResponseCollection> StreamGetAllStreamCustomAttributesNamesWithHttpInfo (string authorization);
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeNameResponseCollection</returns>
+        ApiResponse<StreamStoredStreamCustomAttributeNameResponseCollection> StreamGetAllStreamCustomAttributesNamesWithHttpInfo (string authorization);
         /// <summary>
         /// getAllStreams stream
         /// </summary>
@@ -119,8 +119,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        StreamStoredStreamCustomAtrtributeValueResponseCollection StreamGetStreamCustomAttributeValues (int? streamId, string authorization);
+        /// <returns>StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        StreamStoredStreamCustomAttributeValueResponseCollection StreamGetStreamCustomAttributeValues (int? streamId, string authorization);
 
         /// <summary>
         /// getStreamCustomAttributeValues stream
@@ -131,8 +131,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetStreamCustomAttributeValuesWithHttpInfo (int? streamId, string authorization);
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetStreamCustomAttributeValuesWithHttpInfo (int? streamId, string authorization);
         /// <summary>
         /// getStreamCustomAttributeValuesBySite stream
         /// </summary>
@@ -142,8 +142,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        StreamStoredStreamCustomAtrtributeValueResponseCollection StreamGetStreamCustomAttributeValuesBySite (int? siteId, string authorization);
+        /// <returns>StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        StreamStoredStreamCustomAttributeValueResponseCollection StreamGetStreamCustomAttributeValuesBySite (int? siteId, string authorization);
 
         /// <summary>
         /// getStreamCustomAttributeValuesBySite stream
@@ -154,8 +154,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetStreamCustomAttributeValuesBySiteWithHttpInfo (int? siteId, string authorization);
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetStreamCustomAttributeValuesBySiteWithHttpInfo (int? siteId, string authorization);
         /// <summary>
         /// getStreamsBySite stream
         /// </summary>
@@ -212,8 +212,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetAllStreamCustomAttributeValuesAsync (string authorization);
+        /// <returns>Task of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetAllStreamCustomAttributeValuesAsync (string authorization);
 
         /// <summary>
         /// getAllStreamCustomAttributeValues stream
@@ -223,8 +223,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeValueResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>> StreamGetAllStreamCustomAttributeValuesAsyncWithHttpInfo (string authorization);
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeValueResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>> StreamGetAllStreamCustomAttributeValuesAsyncWithHttpInfo (string authorization);
         /// <summary>
         /// getAllStreamCustomAttributesNames stream
         /// </summary>
@@ -233,8 +233,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeNameResponseCollection</returns>
-        System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeNameResponseCollection> StreamGetAllStreamCustomAttributesNamesAsync (string authorization);
+        /// <returns>Task of StreamStoredStreamCustomAttributeNameResponseCollection</returns>
+        System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeNameResponseCollection> StreamGetAllStreamCustomAttributesNamesAsync (string authorization);
 
         /// <summary>
         /// getAllStreamCustomAttributesNames stream
@@ -244,8 +244,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeNameResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeNameResponseCollection>> StreamGetAllStreamCustomAttributesNamesAsyncWithHttpInfo (string authorization);
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeNameResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeNameResponseCollection>> StreamGetAllStreamCustomAttributesNamesAsyncWithHttpInfo (string authorization);
         /// <summary>
         /// getAllStreams stream
         /// </summary>
@@ -299,8 +299,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetStreamCustomAttributeValuesAsync (int? streamId, string authorization);
+        /// <returns>Task of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetStreamCustomAttributeValuesAsync (int? streamId, string authorization);
 
         /// <summary>
         /// getStreamCustomAttributeValues stream
@@ -311,8 +311,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeValueResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesAsyncWithHttpInfo (int? streamId, string authorization);
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeValueResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesAsyncWithHttpInfo (int? streamId, string authorization);
         /// <summary>
         /// getStreamCustomAttributeValuesBySite stream
         /// </summary>
@@ -322,8 +322,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetStreamCustomAttributeValuesBySiteAsync (int? siteId, string authorization);
+        /// <returns>Task of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetStreamCustomAttributeValuesBySiteAsync (int? siteId, string authorization);
 
         /// <summary>
         /// getStreamCustomAttributeValuesBySite stream
@@ -334,8 +334,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeValueResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesBySiteAsyncWithHttpInfo (int? siteId, string authorization);
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeValueResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesBySiteAsyncWithHttpInfo (int? siteId, string authorization);
         /// <summary>
         /// getStreamsBySite stream
         /// </summary>
@@ -487,10 +487,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public StreamStoredStreamCustomAtrtributeValueResponseCollection StreamGetAllStreamCustomAttributeValues (string authorization)
+        /// <returns>StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public StreamStoredStreamCustomAttributeValueResponseCollection StreamGetAllStreamCustomAttributeValues (string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> localVarResponse = StreamGetAllStreamCustomAttributeValuesWithHttpInfo(authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> localVarResponse = StreamGetAllStreamCustomAttributeValuesWithHttpInfo(authorization);
              return localVarResponse.Data;
         }
 
@@ -499,8 +499,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public ApiResponse< StreamStoredStreamCustomAtrtributeValueResponseCollection > StreamGetAllStreamCustomAttributeValuesWithHttpInfo (string authorization)
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public ApiResponse< StreamStoredStreamCustomAttributeValueResponseCollection > StreamGetAllStreamCustomAttributeValuesWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -549,9 +549,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeValueResponseCollection)));
+                (StreamStoredStreamCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -559,10 +559,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetAllStreamCustomAttributeValuesAsync (string authorization)
+        /// <returns>Task of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetAllStreamCustomAttributeValuesAsync (string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> localVarResponse = await StreamGetAllStreamCustomAttributeValuesAsyncWithHttpInfo(authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> localVarResponse = await StreamGetAllStreamCustomAttributeValuesAsyncWithHttpInfo(authorization);
              return localVarResponse.Data;
 
         }
@@ -572,8 +572,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeValueResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>> StreamGetAllStreamCustomAttributeValuesAsyncWithHttpInfo (string authorization)
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeValueResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>> StreamGetAllStreamCustomAttributeValuesAsyncWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -622,9 +622,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeValueResponseCollection)));
+                (StreamStoredStreamCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -632,10 +632,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeNameResponseCollection</returns>
-        public StreamStoredStreamCustomAtrtributeNameResponseCollection StreamGetAllStreamCustomAttributesNames (string authorization)
+        /// <returns>StreamStoredStreamCustomAttributeNameResponseCollection</returns>
+        public StreamStoredStreamCustomAttributeNameResponseCollection StreamGetAllStreamCustomAttributesNames (string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeNameResponseCollection> localVarResponse = StreamGetAllStreamCustomAttributesNamesWithHttpInfo(authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeNameResponseCollection> localVarResponse = StreamGetAllStreamCustomAttributesNamesWithHttpInfo(authorization);
              return localVarResponse.Data;
         }
 
@@ -644,8 +644,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeNameResponseCollection</returns>
-        public ApiResponse< StreamStoredStreamCustomAtrtributeNameResponseCollection > StreamGetAllStreamCustomAttributesNamesWithHttpInfo (string authorization)
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeNameResponseCollection</returns>
+        public ApiResponse< StreamStoredStreamCustomAttributeNameResponseCollection > StreamGetAllStreamCustomAttributesNamesWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -694,9 +694,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeNameResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeNameResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeNameResponseCollection)));
+                (StreamStoredStreamCustomAttributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeNameResponseCollection)));
         }
 
         /// <summary>
@@ -704,10 +704,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeNameResponseCollection</returns>
-        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeNameResponseCollection> StreamGetAllStreamCustomAttributesNamesAsync (string authorization)
+        /// <returns>Task of StreamStoredStreamCustomAttributeNameResponseCollection</returns>
+        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeNameResponseCollection> StreamGetAllStreamCustomAttributesNamesAsync (string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeNameResponseCollection> localVarResponse = await StreamGetAllStreamCustomAttributesNamesAsyncWithHttpInfo(authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeNameResponseCollection> localVarResponse = await StreamGetAllStreamCustomAttributesNamesAsyncWithHttpInfo(authorization);
              return localVarResponse.Data;
 
         }
@@ -717,8 +717,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeNameResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeNameResponseCollection>> StreamGetAllStreamCustomAttributesNamesAsyncWithHttpInfo (string authorization)
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeNameResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeNameResponseCollection>> StreamGetAllStreamCustomAttributesNamesAsyncWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -767,9 +767,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeNameResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeNameResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeNameResponseCollection)));
+                (StreamStoredStreamCustomAttributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeNameResponseCollection)));
         }
 
         /// <summary>
@@ -1080,10 +1080,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public StreamStoredStreamCustomAtrtributeValueResponseCollection StreamGetStreamCustomAttributeValues (int? streamId, string authorization)
+        /// <returns>StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public StreamStoredStreamCustomAttributeValueResponseCollection StreamGetStreamCustomAttributeValues (int? streamId, string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> localVarResponse = StreamGetStreamCustomAttributeValuesWithHttpInfo(streamId, authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> localVarResponse = StreamGetStreamCustomAttributeValuesWithHttpInfo(streamId, authorization);
              return localVarResponse.Data;
         }
 
@@ -1093,8 +1093,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public ApiResponse< StreamStoredStreamCustomAtrtributeValueResponseCollection > StreamGetStreamCustomAttributeValuesWithHttpInfo (int? streamId, string authorization)
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public ApiResponse< StreamStoredStreamCustomAttributeValueResponseCollection > StreamGetStreamCustomAttributeValuesWithHttpInfo (int? streamId, string authorization)
         {
             // verify the required parameter 'streamId' is set
             if (streamId == null)
@@ -1147,9 +1147,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeValueResponseCollection)));
+                (StreamStoredStreamCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -1158,10 +1158,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetStreamCustomAttributeValuesAsync (int? streamId, string authorization)
+        /// <returns>Task of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetStreamCustomAttributeValuesAsync (int? streamId, string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> localVarResponse = await StreamGetStreamCustomAttributeValuesAsyncWithHttpInfo(streamId, authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> localVarResponse = await StreamGetStreamCustomAttributeValuesAsyncWithHttpInfo(streamId, authorization);
              return localVarResponse.Data;
 
         }
@@ -1172,8 +1172,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="streamId">ID of the stream whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeValueResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesAsyncWithHttpInfo (int? streamId, string authorization)
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeValueResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesAsyncWithHttpInfo (int? streamId, string authorization)
         {
             // verify the required parameter 'streamId' is set
             if (streamId == null)
@@ -1226,9 +1226,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeValueResponseCollection)));
+                (StreamStoredStreamCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -1237,10 +1237,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public StreamStoredStreamCustomAtrtributeValueResponseCollection StreamGetStreamCustomAttributeValuesBySite (int? siteId, string authorization)
+        /// <returns>StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public StreamStoredStreamCustomAttributeValueResponseCollection StreamGetStreamCustomAttributeValuesBySite (int? siteId, string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> localVarResponse = StreamGetStreamCustomAttributeValuesBySiteWithHttpInfo(siteId, authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> localVarResponse = StreamGetStreamCustomAttributeValuesBySiteWithHttpInfo(siteId, authorization);
              return localVarResponse.Data;
         }
 
@@ -1250,8 +1250,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public ApiResponse< StreamStoredStreamCustomAtrtributeValueResponseCollection > StreamGetStreamCustomAttributeValuesBySiteWithHttpInfo (int? siteId, string authorization)
+        /// <returns>ApiResponse of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public ApiResponse< StreamStoredStreamCustomAttributeValueResponseCollection > StreamGetStreamCustomAttributeValuesBySiteWithHttpInfo (int? siteId, string authorization)
         {
             // verify the required parameter 'siteId' is set
             if (siteId == null)
@@ -1304,9 +1304,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeValueResponseCollection)));
+                (StreamStoredStreamCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -1315,10 +1315,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of StreamStoredStreamCustomAtrtributeValueResponseCollection</returns>
-        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAtrtributeValueResponseCollection> StreamGetStreamCustomAttributeValuesBySiteAsync (int? siteId, string authorization)
+        /// <returns>Task of StreamStoredStreamCustomAttributeValueResponseCollection</returns>
+        public async System.Threading.Tasks.Task<StreamStoredStreamCustomAttributeValueResponseCollection> StreamGetStreamCustomAttributeValuesBySiteAsync (int? siteId, string authorization)
         {
-             ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection> localVarResponse = await StreamGetStreamCustomAttributeValuesBySiteAsyncWithHttpInfo(siteId, authorization);
+             ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection> localVarResponse = await StreamGetStreamCustomAttributeValuesBySiteAsyncWithHttpInfo(siteId, authorization);
              return localVarResponse.Data;
 
         }
@@ -1329,8 +1329,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose streams&#39; custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAtrtributeValueResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesBySiteAsyncWithHttpInfo (int? siteId, string authorization)
+        /// <returns>Task of ApiResponse (StreamStoredStreamCustomAttributeValueResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>> StreamGetStreamCustomAttributeValuesBySiteAsyncWithHttpInfo (int? siteId, string authorization)
         {
             // verify the required parameter 'siteId' is set
             if (siteId == null)
@@ -1383,9 +1383,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<StreamStoredStreamCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<StreamStoredStreamCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (StreamStoredStreamCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAtrtributeValueResponseCollection)));
+                (StreamStoredStreamCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(StreamStoredStreamCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>

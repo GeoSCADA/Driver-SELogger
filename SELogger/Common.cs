@@ -33,7 +33,6 @@ namespace SELogger
 		public const UInt32 SendRecLogFDEventText = OPCProperty.Base + 80;
 		public const UInt32 SendRecUpdateLastDataTime = OPCProperty.Base + 98;
 		public const UInt32 SendRecGetLastDataTime = OPCProperty.Base + 99;
-
 	}
 
 

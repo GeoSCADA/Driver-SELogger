@@ -25,7 +25,7 @@ using SwaggerDateConverter = IO.Swagger.Client.SwaggerDateConverter;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// GetSamplesScalarByStreamResponseBody is the result type for an array of StoredSampleScalarResponse (default view)
+    /// GetSamplesScalarBySiteResponseBody is the result type for an array of StoredSampleScalarResponse (default view)
     /// </summary>
     [DataContract]
     public partial class SampleStoredSampleScalarResponseCollection : List<StoredSampleScalarResponse>,  IEquatable<SampleStoredSampleScalarResponseCollection>, IValidatableObject

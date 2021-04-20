@@ -34,7 +34,7 @@ namespace IO.Swagger.Model
         /// Initializes a new instance of the <see cref="StreamSetStreamCustomAttributeValuesRequestBody" /> class.
         /// </summary>
         /// <param name="attributes">attributes.</param>
-        public StreamSetStreamCustomAttributeValuesRequestBody(List<StoredStreamCustomAtrtributeValueRequestBody> attributes = default(List<StoredStreamCustomAtrtributeValueRequestBody>))
+        public StreamSetStreamCustomAttributeValuesRequestBody(List<StoredStreamCustomAttributeValueRequestBody> attributes = default(List<StoredStreamCustomAttributeValueRequestBody>))
         {
             this.Attributes = attributes;
         }
@@ -43,7 +43,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Attributes
         /// </summary>
         [DataMember(Name="attributes", EmitDefaultValue=false)]
-        public List<StoredStreamCustomAtrtributeValueRequestBody> Attributes { get; set; }
+        public List<StoredStreamCustomAttributeValueRequestBody> Attributes { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -115,7 +115,7 @@ namespace IO.Swagger.Client
         public Configuration()
         {
             UserAgent = "Swagger-Codegen/1.0.0/csharp";
-            BasePath = "https://restapi.ayyeka.com";
+            BasePath = "https://ecostruxure-process-instrument-datalogger-api.se.app";
             DefaultHeader = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -131,7 +131,7 @@ namespace IO.Swagger.Client
             IDictionary<string, string> defaultHeader,
             IDictionary<string, string> apiKey,
             IDictionary<string, string> apiKeyPrefix,
-            string basePath = "https://restapi.ayyeka.com") : this()
+            string basePath = "https://ecostruxure-process-instrument-datalogger-api.se.app") : this()
         {
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("The provided basePath is invalid.", "basePath");

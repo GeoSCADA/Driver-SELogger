@@ -53,12 +53,12 @@ namespace IO.Swagger.Client
         public ApiClient()
         {
             Configuration = IO.Swagger.Client.Configuration.Default;
-            RestClient = new RestClient("https://restapi.ayyeka.com");
+            RestClient = new RestClient("https://ecostruxure-process-instrument-datalogger-api.se.app");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (https://restapi.ayyeka.com).
+        /// with default base path (https://ecostruxure-process-instrument-datalogger-api.se.app).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config)
@@ -73,7 +73,7 @@ namespace IO.Swagger.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://restapi.ayyeka.com")
+        public ApiClient(String basePath = "https://ecostruxure-process-instrument-datalogger-api.se.app")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");

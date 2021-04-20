@@ -38,21 +38,21 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredDeviceLogResponse" /> class.
         /// </summary>
-        /// <param name="DeviceChildIdDefunct">Device ID of device log (required).</param>
+        /// <param name="deviceId">Device ID of device log (required).</param>
         /// <param name="id">ID is the unique id of the device log. (required).</param>
         /// <param name="logDate">Log of sample (required).</param>
         /// <param name="message">Message (required).</param>
         /// <param name="source">Source (required).</param>
-        public StoredDeviceLogResponse(int? DeviceChildIdDefunct = default(int?), long? id = default(long?), DateTime? logDate = default(DateTime?), string message = default(string), string source = default(string))
+        public StoredDeviceLogResponse(int? deviceId = default(int?), long? id = default(long?), DateTime? logDate = default(DateTime?), string message = default(string), string source = default(string))
         {
-            // to ensure "DeviceChildIdDefunct" is required (not null)
-            if (DeviceChildIdDefunct == null)
+            // to ensure "deviceId" is required (not null)
+            if (deviceId == null)
             {
-                throw new InvalidDataException("DeviceChildIdDefunct is a required property for StoredDeviceLogResponse and cannot be null");
+                throw new InvalidDataException("deviceId is a required property for StoredDeviceLogResponse and cannot be null");
             }
             else
             {
-                this.DeviceChildIdDefunct = DeviceChildIdDefunct;
+                this.DeviceId = deviceId;
             }
             // to ensure "id" is required (not null)
             if (id == null)
@@ -97,7 +97,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>Device ID of device log</value>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
-        public int? DeviceChildIdDefunct { get; set; }
+        public int? DeviceId { get; set; }
 
         /// <summary>
         /// ID is the unique id of the device log.
@@ -135,7 +135,7 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class StoredDeviceLogResponse {\n");
-            sb.Append("  DeviceChildIdDefunct: ").Append(DeviceChildIdDefunct).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LogDate: ").Append(LogDate).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
@@ -175,9 +175,9 @@ namespace IO.Swagger.Model
 
             return 
                 (
-                    this.DeviceChildIdDefunct == input.DeviceChildIdDefunct ||
-                    (this.DeviceChildIdDefunct != null &&
-                    this.DeviceChildIdDefunct.Equals(input.DeviceChildIdDefunct))
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -210,8 +210,8 @@ namespace IO.Swagger.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DeviceChildIdDefunct != null)
-                    hashCode = hashCode * 59 + this.DeviceChildIdDefunct.GetHashCode();
+                if (this.DeviceId != null)
+                    hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.LogDate != null)
@@ -231,10 +231,10 @@ namespace IO.Swagger.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // DeviceChildIdDefunct (int?) minimum
-            if(this.DeviceChildIdDefunct < (int?)1)
+            // DeviceId (int?) minimum
+            if(this.DeviceId < (int?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceChildIdDefunct, must be a value greater than or equal to 1.", new [] { "DeviceChildIdDefunct" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceId, must be a value greater than or equal to 1.", new [] { "DeviceId" });
             }
 
             // Message (string) maxLength

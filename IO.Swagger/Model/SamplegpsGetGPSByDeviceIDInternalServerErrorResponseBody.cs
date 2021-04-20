@@ -28,24 +28,24 @@ namespace IO.Swagger.Model
     /// System error
     /// </summary>
     [DataContract]
-    public partial class SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody :  IEquatable<SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody>, IValidatableObject
+    public partial class SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody :  IEquatable<SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody() { }
+        protected SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody" /> class.
+        /// Initializes a new instance of the <see cref="SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody" /> class.
         /// </summary>
         /// <param name="message">Message of error (required).</param>
         /// <param name="requestId">Request ID (required).</param>
-        public SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody(string message = default(string), string requestId = default(string))
+        public SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody(string message = default(string), string requestId = default(string))
         {
             // to ensure "message" is required (not null)
             if (message == null)
             {
-                throw new InvalidDataException("message is a required property for SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody and cannot be null");
+                throw new InvalidDataException("message is a required property for SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody and cannot be null");
             }
             else
             {
@@ -54,7 +54,7 @@ namespace IO.Swagger.Model
             // to ensure "requestId" is required (not null)
             if (requestId == null)
             {
-                throw new InvalidDataException("requestId is a required property for SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody and cannot be null");
+                throw new InvalidDataException("requestId is a required property for SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody and cannot be null");
             }
             else
             {
@@ -83,7 +83,7 @@ namespace IO.Swagger.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody {\n");
+            sb.Append("class SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("}\n");
@@ -106,15 +106,15 @@ namespace IO.Swagger.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody);
+            return this.Equals(input as SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody);
         }
 
         /// <summary>
-        /// Returns true if SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody instances are equal
+        /// Returns true if SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody instances are equal
         /// </summary>
-        /// <param name="input">Instance of SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody to be compared</param>
+        /// <param name="input">Instance of SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SamplegpsGetGPSByDeviceChildIdDefunctInternalServerErrorResponseBody input)
+        public bool Equals(SamplegpsGetGPSByDeviceIDInternalServerErrorResponseBody input)
         {
             if (input == null)
                 return false;

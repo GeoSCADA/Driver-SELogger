@@ -32,8 +32,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        SiteStoredSiteCustomAtrtributeValueResponseCollection SiteGetAllSiteCustomAttributeValues (string authorization);
+        /// <returns>SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        SiteStoredSiteCustomAttributeValueResponseCollection SiteGetAllSiteCustomAttributeValues (string authorization);
 
         /// <summary>
         /// getAllSiteCustomAttributeValues site
@@ -43,8 +43,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection> SiteGetAllSiteCustomAttributeValuesWithHttpInfo (string authorization);
+        /// <returns>ApiResponse of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection> SiteGetAllSiteCustomAttributeValuesWithHttpInfo (string authorization);
         /// <summary>
         /// getAllSiteCustomAttributesNames site
         /// </summary>
@@ -53,8 +53,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SiteStoredSiteCustomAtrtributeNameResponseCollection</returns>
-        SiteStoredSiteCustomAtrtributeNameResponseCollection SiteGetAllSiteCustomAttributesNames (string authorization);
+        /// <returns>SiteStoredSiteCustomAttributeNameResponseCollection</returns>
+        SiteStoredSiteCustomAttributeNameResponseCollection SiteGetAllSiteCustomAttributesNames (string authorization);
 
         /// <summary>
         /// getAllSiteCustomAttributesNames site
@@ -64,8 +64,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SiteStoredSiteCustomAtrtributeNameResponseCollection</returns>
-        ApiResponse<SiteStoredSiteCustomAtrtributeNameResponseCollection> SiteGetAllSiteCustomAttributesNamesWithHttpInfo (string authorization);
+        /// <returns>ApiResponse of SiteStoredSiteCustomAttributeNameResponseCollection</returns>
+        ApiResponse<SiteStoredSiteCustomAttributeNameResponseCollection> SiteGetAllSiteCustomAttributesNamesWithHttpInfo (string authorization);
         /// <summary>
         /// getAllSites site
         /// </summary>
@@ -119,8 +119,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        SiteStoredSiteCustomAtrtributeValueResponseCollection SiteGetSiteCustomAttributeValues (int? siteId, string authorization);
+        /// <returns>SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        SiteStoredSiteCustomAttributeValueResponseCollection SiteGetSiteCustomAttributeValues (int? siteId, string authorization);
 
         /// <summary>
         /// getSiteCustomAttributeValues site
@@ -131,8 +131,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection> SiteGetSiteCustomAttributeValuesWithHttpInfo (int? siteId, string authorization);
+        /// <returns>ApiResponse of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection> SiteGetSiteCustomAttributeValuesWithHttpInfo (int? siteId, string authorization);
         /// <summary>
         /// setSiteCustomAttributeValues site
         /// </summary>
@@ -166,8 +166,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        System.Threading.Tasks.Task<SiteStoredSiteCustomAtrtributeValueResponseCollection> SiteGetAllSiteCustomAttributeValuesAsync (string authorization);
+        /// <returns>Task of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        System.Threading.Tasks.Task<SiteStoredSiteCustomAttributeValueResponseCollection> SiteGetAllSiteCustomAttributeValuesAsync (string authorization);
 
         /// <summary>
         /// getAllSiteCustomAttributeValues site
@@ -177,8 +177,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAtrtributeValueResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>> SiteGetAllSiteCustomAttributeValuesAsyncWithHttpInfo (string authorization);
+        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAttributeValueResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>> SiteGetAllSiteCustomAttributeValuesAsyncWithHttpInfo (string authorization);
         /// <summary>
         /// getAllSiteCustomAttributesNames site
         /// </summary>
@@ -187,8 +187,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SiteStoredSiteCustomAtrtributeNameResponseCollection</returns>
-        System.Threading.Tasks.Task<SiteStoredSiteCustomAtrtributeNameResponseCollection> SiteGetAllSiteCustomAttributesNamesAsync (string authorization);
+        /// <returns>Task of SiteStoredSiteCustomAttributeNameResponseCollection</returns>
+        System.Threading.Tasks.Task<SiteStoredSiteCustomAttributeNameResponseCollection> SiteGetAllSiteCustomAttributesNamesAsync (string authorization);
 
         /// <summary>
         /// getAllSiteCustomAttributesNames site
@@ -198,8 +198,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAtrtributeNameResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAtrtributeNameResponseCollection>> SiteGetAllSiteCustomAttributesNamesAsyncWithHttpInfo (string authorization);
+        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAttributeNameResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAttributeNameResponseCollection>> SiteGetAllSiteCustomAttributesNamesAsyncWithHttpInfo (string authorization);
         /// <summary>
         /// getAllSites site
         /// </summary>
@@ -253,8 +253,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        System.Threading.Tasks.Task<SiteStoredSiteCustomAtrtributeValueResponseCollection> SiteGetSiteCustomAttributeValuesAsync (int? siteId, string authorization);
+        /// <returns>Task of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        System.Threading.Tasks.Task<SiteStoredSiteCustomAttributeValueResponseCollection> SiteGetSiteCustomAttributeValuesAsync (int? siteId, string authorization);
 
         /// <summary>
         /// getSiteCustomAttributeValues site
@@ -265,8 +265,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAtrtributeValueResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>> SiteGetSiteCustomAttributeValuesAsyncWithHttpInfo (int? siteId, string authorization);
+        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAttributeValueResponseCollection)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>> SiteGetSiteCustomAttributeValuesAsyncWithHttpInfo (int? siteId, string authorization);
         /// <summary>
         /// setSiteCustomAttributeValues site
         /// </summary>
@@ -395,10 +395,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        public SiteStoredSiteCustomAtrtributeValueResponseCollection SiteGetAllSiteCustomAttributeValues (string authorization)
+        /// <returns>SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        public SiteStoredSiteCustomAttributeValueResponseCollection SiteGetAllSiteCustomAttributeValues (string authorization)
         {
-             ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection> localVarResponse = SiteGetAllSiteCustomAttributeValuesWithHttpInfo(authorization);
+             ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection> localVarResponse = SiteGetAllSiteCustomAttributeValuesWithHttpInfo(authorization);
              return localVarResponse.Data;
         }
 
@@ -407,8 +407,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        public ApiResponse< SiteStoredSiteCustomAtrtributeValueResponseCollection > SiteGetAllSiteCustomAttributeValuesWithHttpInfo (string authorization)
+        /// <returns>ApiResponse of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        public ApiResponse< SiteStoredSiteCustomAttributeValueResponseCollection > SiteGetAllSiteCustomAttributeValuesWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -457,9 +457,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SiteStoredSiteCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAtrtributeValueResponseCollection)));
+                (SiteStoredSiteCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -467,10 +467,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        public async System.Threading.Tasks.Task<SiteStoredSiteCustomAtrtributeValueResponseCollection> SiteGetAllSiteCustomAttributeValuesAsync (string authorization)
+        /// <returns>Task of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        public async System.Threading.Tasks.Task<SiteStoredSiteCustomAttributeValueResponseCollection> SiteGetAllSiteCustomAttributeValuesAsync (string authorization)
         {
-             ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection> localVarResponse = await SiteGetAllSiteCustomAttributeValuesAsyncWithHttpInfo(authorization);
+             ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection> localVarResponse = await SiteGetAllSiteCustomAttributeValuesAsyncWithHttpInfo(authorization);
              return localVarResponse.Data;
 
         }
@@ -480,8 +480,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAtrtributeValueResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>> SiteGetAllSiteCustomAttributeValuesAsyncWithHttpInfo (string authorization)
+        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAttributeValueResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>> SiteGetAllSiteCustomAttributeValuesAsyncWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -530,9 +530,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SiteStoredSiteCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAtrtributeValueResponseCollection)));
+                (SiteStoredSiteCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -540,10 +540,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SiteStoredSiteCustomAtrtributeNameResponseCollection</returns>
-        public SiteStoredSiteCustomAtrtributeNameResponseCollection SiteGetAllSiteCustomAttributesNames (string authorization)
+        /// <returns>SiteStoredSiteCustomAttributeNameResponseCollection</returns>
+        public SiteStoredSiteCustomAttributeNameResponseCollection SiteGetAllSiteCustomAttributesNames (string authorization)
         {
-             ApiResponse<SiteStoredSiteCustomAtrtributeNameResponseCollection> localVarResponse = SiteGetAllSiteCustomAttributesNamesWithHttpInfo(authorization);
+             ApiResponse<SiteStoredSiteCustomAttributeNameResponseCollection> localVarResponse = SiteGetAllSiteCustomAttributesNamesWithHttpInfo(authorization);
              return localVarResponse.Data;
         }
 
@@ -552,8 +552,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SiteStoredSiteCustomAtrtributeNameResponseCollection</returns>
-        public ApiResponse< SiteStoredSiteCustomAtrtributeNameResponseCollection > SiteGetAllSiteCustomAttributesNamesWithHttpInfo (string authorization)
+        /// <returns>ApiResponse of SiteStoredSiteCustomAttributeNameResponseCollection</returns>
+        public ApiResponse< SiteStoredSiteCustomAttributeNameResponseCollection > SiteGetAllSiteCustomAttributesNamesWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -602,9 +602,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SiteStoredSiteCustomAtrtributeNameResponseCollection>(localVarStatusCode,
+            return new ApiResponse<SiteStoredSiteCustomAttributeNameResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SiteStoredSiteCustomAtrtributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAtrtributeNameResponseCollection)));
+                (SiteStoredSiteCustomAttributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAttributeNameResponseCollection)));
         }
 
         /// <summary>
@@ -612,10 +612,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SiteStoredSiteCustomAtrtributeNameResponseCollection</returns>
-        public async System.Threading.Tasks.Task<SiteStoredSiteCustomAtrtributeNameResponseCollection> SiteGetAllSiteCustomAttributesNamesAsync (string authorization)
+        /// <returns>Task of SiteStoredSiteCustomAttributeNameResponseCollection</returns>
+        public async System.Threading.Tasks.Task<SiteStoredSiteCustomAttributeNameResponseCollection> SiteGetAllSiteCustomAttributesNamesAsync (string authorization)
         {
-             ApiResponse<SiteStoredSiteCustomAtrtributeNameResponseCollection> localVarResponse = await SiteGetAllSiteCustomAttributesNamesAsyncWithHttpInfo(authorization);
+             ApiResponse<SiteStoredSiteCustomAttributeNameResponseCollection> localVarResponse = await SiteGetAllSiteCustomAttributesNamesAsyncWithHttpInfo(authorization);
              return localVarResponse.Data;
 
         }
@@ -625,8 +625,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAtrtributeNameResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAtrtributeNameResponseCollection>> SiteGetAllSiteCustomAttributesNamesAsyncWithHttpInfo (string authorization)
+        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAttributeNameResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAttributeNameResponseCollection>> SiteGetAllSiteCustomAttributesNamesAsyncWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -675,9 +675,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SiteStoredSiteCustomAtrtributeNameResponseCollection>(localVarStatusCode,
+            return new ApiResponse<SiteStoredSiteCustomAttributeNameResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SiteStoredSiteCustomAtrtributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAtrtributeNameResponseCollection)));
+                (SiteStoredSiteCustomAttributeNameResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAttributeNameResponseCollection)));
         }
 
         /// <summary>
@@ -988,10 +988,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        public SiteStoredSiteCustomAtrtributeValueResponseCollection SiteGetSiteCustomAttributeValues (int? siteId, string authorization)
+        /// <returns>SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        public SiteStoredSiteCustomAttributeValueResponseCollection SiteGetSiteCustomAttributeValues (int? siteId, string authorization)
         {
-             ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection> localVarResponse = SiteGetSiteCustomAttributeValuesWithHttpInfo(siteId, authorization);
+             ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection> localVarResponse = SiteGetSiteCustomAttributeValuesWithHttpInfo(siteId, authorization);
              return localVarResponse.Data;
         }
 
@@ -1001,8 +1001,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>ApiResponse of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        public ApiResponse< SiteStoredSiteCustomAtrtributeValueResponseCollection > SiteGetSiteCustomAttributeValuesWithHttpInfo (int? siteId, string authorization)
+        /// <returns>ApiResponse of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        public ApiResponse< SiteStoredSiteCustomAttributeValueResponseCollection > SiteGetSiteCustomAttributeValuesWithHttpInfo (int? siteId, string authorization)
         {
             // verify the required parameter 'siteId' is set
             if (siteId == null)
@@ -1055,9 +1055,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SiteStoredSiteCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAtrtributeValueResponseCollection)));
+                (SiteStoredSiteCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>
@@ -1066,10 +1066,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of SiteStoredSiteCustomAtrtributeValueResponseCollection</returns>
-        public async System.Threading.Tasks.Task<SiteStoredSiteCustomAtrtributeValueResponseCollection> SiteGetSiteCustomAttributeValuesAsync (int? siteId, string authorization)
+        /// <returns>Task of SiteStoredSiteCustomAttributeValueResponseCollection</returns>
+        public async System.Threading.Tasks.Task<SiteStoredSiteCustomAttributeValueResponseCollection> SiteGetSiteCustomAttributeValuesAsync (int? siteId, string authorization)
         {
-             ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection> localVarResponse = await SiteGetSiteCustomAttributeValuesAsyncWithHttpInfo(siteId, authorization);
+             ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection> localVarResponse = await SiteGetSiteCustomAttributeValuesAsyncWithHttpInfo(siteId, authorization);
              return localVarResponse.Data;
 
         }
@@ -1080,8 +1080,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="siteId">ID of the site whose custom attributes should be returned</param>
         /// <param name="authorization">JWT used for authentication</param>
-        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAtrtributeValueResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>> SiteGetSiteCustomAttributeValuesAsyncWithHttpInfo (int? siteId, string authorization)
+        /// <returns>Task of ApiResponse (SiteStoredSiteCustomAttributeValueResponseCollection)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>> SiteGetSiteCustomAttributeValuesAsyncWithHttpInfo (int? siteId, string authorization)
         {
             // verify the required parameter 'siteId' is set
             if (siteId == null)
@@ -1134,9 +1134,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SiteStoredSiteCustomAtrtributeValueResponseCollection>(localVarStatusCode,
+            return new ApiResponse<SiteStoredSiteCustomAttributeValueResponseCollection>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SiteStoredSiteCustomAtrtributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAtrtributeValueResponseCollection)));
+                (SiteStoredSiteCustomAttributeValueResponseCollection) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SiteStoredSiteCustomAttributeValueResponseCollection)));
         }
 
         /// <summary>

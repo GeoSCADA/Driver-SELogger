@@ -42,8 +42,10 @@ namespace IO.Swagger.Model
         /// <param name="creationDate">Creation date (required).</param>
         /// <param name="displayName">Display name (required).</param>
         /// <param name="id">ID is the unique id of the site. (required).</param>
+        /// <param name="latitude">Site&#39;s Latitude (required).</param>
+        /// <param name="longitude">Site&#39;s Longitude (required).</param>
         /// <param name="status">Status display name (required).</param>
-        public SiteGetSiteByIDResponseBody(int? accountOrganizationId = default(int?), DateTime? creationDate = default(DateTime?), string displayName = default(string), long? id = default(long?), string status = default(string))
+        public SiteGetSiteByIDResponseBody(int? accountOrganizationId = default(int?), DateTime? creationDate = default(DateTime?), string displayName = default(string), long? id = default(long?), string latitude = default(string), string longitude = default(string), string status = default(string))
         {
             // to ensure "creationDate" is required (not null)
             if (creationDate == null)
@@ -71,6 +73,24 @@ namespace IO.Swagger.Model
             else
             {
                 this.Id = id;
+            }
+            // to ensure "latitude" is required (not null)
+            if (latitude == null)
+            {
+                throw new InvalidDataException("latitude is a required property for SiteGetSiteByIDResponseBody and cannot be null");
+            }
+            else
+            {
+                this.Latitude = latitude;
+            }
+            // to ensure "longitude" is required (not null)
+            if (longitude == null)
+            {
+                throw new InvalidDataException("longitude is a required property for SiteGetSiteByIDResponseBody and cannot be null");
+            }
+            else
+            {
+                this.Longitude = longitude;
             }
             // to ensure "status" is required (not null)
             if (status == null)
@@ -113,6 +133,20 @@ namespace IO.Swagger.Model
         public long? Id { get; set; }
 
         /// <summary>
+        /// Site&#39;s Latitude
+        /// </summary>
+        /// <value>Site&#39;s Latitude</value>
+        [DataMember(Name="latitude", EmitDefaultValue=false)]
+        public string Latitude { get; set; }
+
+        /// <summary>
+        /// Site&#39;s Longitude
+        /// </summary>
+        /// <value>Site&#39;s Longitude</value>
+        [DataMember(Name="longitude", EmitDefaultValue=false)]
+        public string Longitude { get; set; }
+
+        /// <summary>
         /// Status display name
         /// </summary>
         /// <value>Status display name</value>
@@ -131,6 +165,8 @@ namespace IO.Swagger.Model
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Latitude: ").Append(Latitude).Append("\n");
+            sb.Append("  Longitude: ").Append(Longitude).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -187,6 +223,16 @@ namespace IO.Swagger.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
+                    this.Latitude == input.Latitude ||
+                    (this.Latitude != null &&
+                    this.Latitude.Equals(input.Latitude))
+                ) && 
+                (
+                    this.Longitude == input.Longitude ||
+                    (this.Longitude != null &&
+                    this.Longitude.Equals(input.Longitude))
+                ) && 
+                (
                     this.Status == input.Status ||
                     (this.Status != null &&
                     this.Status.Equals(input.Status))
@@ -210,6 +256,10 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.DisplayName.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Latitude != null)
+                    hashCode = hashCode * 59 + this.Latitude.GetHashCode();
+                if (this.Longitude != null)
+                    hashCode = hashCode * 59 + this.Longitude.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 return hashCode;

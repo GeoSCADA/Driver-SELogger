@@ -111,11 +111,9 @@ namespace IO.Swagger.Model
             {
                 this.RepeatsPerUserOnFailed = repeatsPerUserOnFailed;
             }
-			// to ensure "type" is required (not null)
-#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
-			if (type == null)
-#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
-			{
+            // to ensure "type" is required (not null)
+            if (type == null)
+            {
                 throw new InvalidDataException("type is a required property for ThresholdActionNotificationRequestBody and cannot be null");
             }
             else
