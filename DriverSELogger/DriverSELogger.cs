@@ -218,9 +218,17 @@ namespace DriverSELogger
 			// No need to call base class. Return exception on failure of connection
 			Configuration.Default.BasePath = DBChannel.BaseURL;
 
-			var tokenTask = RestAPITools.FetchOrValidateAccessToken(DBChannel.AuthURL, DBChannel.APIKey, DBChannel.APISecret);
-			tokenTask.Wait();
-			tokenStr = tokenTask.Result;
+			try
+			{
+				var tokenTask = RestAPITools.FetchOrValidateAccessToken(DBChannel.AuthURL, DBChannel.APIKey, DBChannel.APISecret);
+				tokenTask.Wait();
+				tokenStr = tokenTask.Result;
+			}
+			catch (Exception e)
+			{
+				LogAndEvent("Poll token exception: " + e.Message + " " + (e.InnerException != null ? e.InnerException.Message : ""));
+				tokenStr = "";
+			}
 
 			Log("Channel OnPoll(): " + tokenStr);
 			if (tokenStr != "")
@@ -234,9 +242,21 @@ namespace DriverSELogger
 				if (DBChannel.OrganizationName != "")
 				{
 					// Read Organizations
-					var organizationsTask = new AccountApi().AccountGetAllOrganizationsAsync($"Bearer {tokenStr}");
-					organizationsTask.Wait();
-					var organizations = organizationsTask.Result;
+					AccountStoredOrganizationResponseCollection organizations = null;
+					try
+					{ 
+						var organizationsTask = new AccountApi().AccountGetAllOrganizationsAsync($"Bearer {tokenStr}");
+						organizationsTask.Wait();
+						organizations = organizationsTask.Result;
+					}
+					catch (Exception e)
+					{
+						LogAndEvent("Channel problem getting organizations: " + e.Message);
+						SetFailReason("Could not find organizations.");
+						SetStatus(ServerStatus.Offline, "Cannot find organizations");
+						return;
+					}
+
 					if (organizations != null && organizations.Count > 0)
 					{
 						foreach (var organization in organizations)
@@ -250,22 +270,44 @@ namespace DriverSELogger
 					}
 				}
 				// Now if organizationId is non-zero then filter the sites by organisation, otherwise retrieve them all
-				var sitesTask = new SiteApi().SiteGetAllSitesAsync($"Bearer {tokenStr}");
-				sitesTask.Wait();
-				var sites = sitesTask.Result;
+				SiteStoredSiteResponseCollection sites = null;
+				try
+				{ 
+					var sitesTask = new SiteApi().SiteGetAllSitesAsync($"Bearer {tokenStr}");
+					sitesTask.Wait();
+					sites = sitesTask.Result;
+				}
+				catch (Exception e)
+				{
+					LogAndEvent("Channel problem getting sites: " + e.Message);
+					SetFailReason("Could not find sites.");
+					SetStatus(ServerStatus.Offline, "Cannot find sites");
+					return;
+				}
 
 				if (sites != null && sites.Count > 0)
 				{
 					foreach (var site in sites)
 					{
-						LogAndEvent($"Found Site, Id: { site.Id}, Account Org Id: {site.AccountOrganizationId}, Status {site.Status}, DisplayName: { site.DisplayName}");
+						LogAndEvent($"Found Site, Id: { site.Id}, Account Org Id: {site.AccountOrganizationId}, Status {site.Status}, DisplayName: { site.DisplayName}, Lat: {site.Latitude}, Long: {site.Longitude}");
 					}
 				}
 
 				//Now look up all Devices
-				var devicesTask = new DeviceApi().DeviceGetAllDevicesAsync($"Bearer {tokenStr}");
-				devicesTask.Wait();
-				var devices = devicesTask.Result;
+				DeviceStoredDeviceResponseCollection devices = null;
+				try
+				{ 
+					var devicesTask = new DeviceApi().DeviceGetAllDevicesAsync($"Bearer {tokenStr}");
+					devicesTask.Wait();
+					devices = devicesTask.Result;
+				}
+				catch (Exception e)
+				{
+					LogAndEvent("Channel problem getting devices: " + e.Message + " " + (e.InnerException != null ? e.InnerException.Message : ""));
+					SetFailReason("Could not find devices.");
+					SetStatus(ServerStatus.Offline, "Cannot find devices");
+					return;
+				}
 
 				if (devices != null && devices.Count > 0)
 				{
@@ -309,9 +351,16 @@ namespace DriverSELogger
             Log("Channel doConnect(): Call Conn...");
 			Configuration.Default.BasePath = DBChannel.BaseURL;
 
-			var tokenTask = RestAPITools.FetchOrValidateAccessToken(DBChannel.AuthURL, DBChannel.APIKey, DBChannel.APISecret);
-			tokenTask.Wait();
-			tokenStr = tokenTask.Result;
+			try
+			{
+				var tokenTask = RestAPITools.FetchOrValidateAccessToken(DBChannel.AuthURL, DBChannel.APIKey, DBChannel.APISecret);
+				tokenTask.Wait();
+				tokenStr = tokenTask.Result;
+			}
+			catch (Exception e)
+			{
+				LogAndEvent("Connect fetch exception: " + e.Message + " " + (e.InnerException != null ? e.InnerException.Message : ""));
+			}
 
             Log("Channel doConnect() token: " + tokenStr);
 			if (tokenStr != "")
@@ -466,6 +515,9 @@ namespace DriverSELogger
 		private string CalcConfigChecksum(StoredSiteResponse site, StoredDeviceResponse device, StreamStoredStreamResponseCollection streams)
 		{
 			string configData = ($"{site.Id},{site.AccountOrganizationId},{site.DisplayName}");
+			// Add Lat and Long so changes will also cause reconfiguration - this could be more efficient
+			configData += $"{site.Latitude},{site.Longitude}";
+			// Can't find a way to set location in the DLL, so has to be done with the Client connection - could at least be separated into a different change mechanism
 
 			configData += $"{device.Id},{device.DisplayName},{device.SiteId},{device.ModelNumber},{device.SerialNumber},{device.FirmwareVersion},{device.Akid},{device.Iccid},{device.Iccid2},{device.Meid}";
 
@@ -893,7 +945,7 @@ namespace DriverSELogger
 			}
 			else
 			{
-				CheckSet(FieldDevice, "AccountOrganizationId", (Int32)site.AccountOrganizationId);
+				CheckSet(FieldDevice, "OrganizationId", (Int32)site.AccountOrganizationId);
 			}
 
 			LogAndEvent($"Found Device Id: {device.Id}, DisplayName {device.DisplayName}, Site Id: {device.SiteId}, Model: { device.ModelNumber}, Serial: { device.SerialNumber}");
@@ -906,6 +958,43 @@ namespace DriverSELogger
 			CheckSet(FieldDevice, "ICCID", device.Iccid);
 			CheckSet(FieldDevice, "ICCID2", device.Iccid2);
 			CheckSet(FieldDevice, "MEID", device.Meid);
+
+			// Set location properties from site Lat and Long
+			// Alternatively this could be modified to set the location of the parent group
+			// The location is only set when devices are created - this could instead be updated each poll by getting site info,
+			// which would be needed if the location of loggers changes such as when on vehicles.
+			// Or by retrieving full history data and populating to related point values or a Data Table if history is desired.
+
+			// First set the location to be dynamic:
+			var GeoAgg = FieldDevice.Aggregates["GISLocationSource"];
+			bool ContinueGeo = true;
+			if (!GeoAgg.Enabled || GeoAgg.ClassName != "CGISLocationSrcDynamic")
+			{
+				// May fail if templated
+				try
+				{
+					GeoAgg.ClassName = "CGISLocationSrcDynamic";
+				}
+				catch (Exception e)
+				{
+					LogAndEvent("Cannot set device location aggregate. " + e.Message);
+					ContinueGeo = false;
+				}
+			}
+			if (ContinueGeo)
+			{
+				try
+				{
+					// Set location
+					GeoAgg["Latitude"] = site.Latitude;
+					GeoAgg["Longitude"] = site.Longitude;
+					GeoAgg["UpdateTime"] = DateTime.UtcNow;
+				}
+				catch (Exception e)
+				{
+					LogAndEvent("Cannot set device location aggregate values. " + e.Message);
+				}
+			}
 
 			// Create points
 			// 
@@ -1280,16 +1369,17 @@ namespace DriverSELogger
 
             ((DrvSELoggerChannel)Channel).AddScannerToIndex(this);
 
-			// Read last retrieval time here from a data item on the server
-			Object Data = null;
-			App.SendReceiveObject(this.DBScanner.Id, OPCProperty.SendRecGetLastDataTime, "", ref Data);
-			DBScanner.LastDataTime = (DateTime)Data;
-			// Ensure this time is greater than that configured in channel's MaxRetrieveDays
-			DateTime EarliestDate = DateTime.UtcNow.AddDays(-((DrvSELoggerChannel)Channel).DBChannel.MaxRetrieveDays);
-			if (EarliestDate > DBScanner.LastDataTime)
+			// Read last sample id and retrieval time here from a data item on the server.
+			// Date/time is for future reference and does not affect retrieval
+			//object[] LastDataParams = new object[2];
+			object DataRef = null;
+
+			App.SendReceiveObject(this.DBScanner.Id, OPCProperty.SendRecGetLastDataTime, "", ref DataRef);
+			if (DataRef != null)
 			{
-				DBScanner.LastDataTime = EarliestDate;
-				LogAndEvent($"Set earliest retrieval date to: {EarliestDate}");
+				object[] LastDataParams = (object[])DataRef;
+				DBScanner.LastDataTime = (DateTime)LastDataParams[0];
+				DBScanner.LastSampleId = (long)LastDataParams[1];
 			}
 			return SourceStatus.Online;
         }
@@ -1305,35 +1395,51 @@ namespace DriverSELogger
 			// This is used to pick up and process data
 			LogAndEvent("OnScan.");
 
-			SampleGetSamplesScalarBatchBySiteResponseBody response = null;
+			SampleStoredSampleScalarResponseCollection response;
+			do
+			{
+				response = null;
 
-			try
-			{
-				// newest sample in Epoch - plus one second to avoid duplicate values
-				int SampleDate = 1 + (int) Util.DateTimeToUnixTimeStamp(this.DBScanner.LastDataTime);
-				response = new SampleApi().SampleGetSamplesScalarBatchBySite(DBScanner.SiteId, SampleDate , $"Bearer {channel.tokenStr}");
-			}
-			catch (ApiException e)
-			{
-				LogAndEvent("API Exception: " + e.ErrorCode.ToString() + " " + e.Message);
-			}
-
-			if (response?.Samples != null)
-			{
-				DateTime LastDataTime = ProcessMetrics(response);
-				if (LastDataTime >= this.DBScanner.LastDataTime)
+				// We now use a SampleId number which the server uses to keep track of what has been downloaded per site
+				try
 				{
-					// If last data time has changed, then write to the scanner and send to the server
-					this.DBScanner.LastDataTime = LastDataTime;
-					App.SendReceiveObject(this.DBScanner.Id, OPCProperty.SendRecUpdateLastDataTime, LastDataTime);
+					long? LastSampleId = this.DBScanner.LastSampleId;
+					// Database object initialises this to 0
+					if (LastSampleId == 0)
+					{
+						// If zero then we should call with NULL which tells the server we have not got data for this site before.
+						// But API declares the minimum to be 1, could be an error in the API definition, or intentional.
+						LastSampleId = 1;
+					}
+					response = new SampleApi().SampleGetSamplesScalarBySite(DBScanner.SiteId, $"Bearer {channel.tokenStr}", LastSampleId);
 				}
-			}
+				catch (ApiException e)
+				{
+					LogAndEvent("API Exception: " + e.ErrorCode.ToString() + " " + e.Message);
+					return;
+				}
 
-			/*
-			 * If the batch consists of over 10,000 samples, it is broken down into chunks of no more than 10,000
-			 * samples each, sent consecutively. The hasMore return flag indicates whether a given chunk is the
-			 * last chunk. However, we just wait until the next scan!
-			 */
+				if (response != null)
+				{
+					long LastSampleId;
+					DateTime LastDataTime = ProcessMetrics(response, out LastSampleId);
+					// Write to the scanner and send to the server
+					this.DBScanner.LastDataTime = LastDataTime;
+					this.DBScanner.LastSampleId = (long)LastSampleId;
+					object[] LastDataParams = new object[2];
+					LastDataParams[0] = LastDataTime;
+					LastDataParams[1] = LastSampleId;
+					App.SendReceiveObject(this.DBScanner.Id, OPCProperty.SendRecUpdateLastDataTime, LastDataParams);
+				}
+
+				/*
+				 * If the batch consists of over 10,000 samples, it is broken down into chunks of no more than 10,000
+				 * samples each, sent consecutively.
+				 * API Documentation states 100 though.
+				 * So we cause another read if there are more than 99 samples in the last call.
+				 */
+			}
+			while (response != null && response.Count > 99);
 		}
 
 
@@ -1355,18 +1461,18 @@ namespace DriverSELogger
 			}
 		}
 
-		public DateTime ProcessMetrics(SampleGetSamplesScalarBatchBySiteResponseBody response)
+		public DateTime ProcessMetrics(SampleStoredSampleScalarResponseCollection response, out long LastSampleId)
 		{
 			bool DataReceived = false;
-			
+			LastSampleId = 0;
 			DateTime LastDataTime = DateTime.UtcNow.AddDays(-365); // Default oldest date of data
 
-			if (response?.Samples != null)
+			if (response != null)
 			{
 				/*
 				 * Printing Out the new Samples
 				 */
-				foreach (var sample in response.Samples)
+				foreach (var sample in response )
 				{
 					// Change to log
 					LogAndEvent($"Found New Sample: ID: { sample.Id}, Value: { sample.Value}, SampleDate: {sample.SampleDate}, StreamId: {sample.StreamId}");
@@ -1378,6 +1484,7 @@ namespace DriverSELogger
 					{
 						LastDataTime = (sample.SampleDate is null) ? DateTime.UtcNow : (DateTime)sample.SampleDate;
 					}
+					LastSampleId = (long)sample.Id;
 				}
 			}
 

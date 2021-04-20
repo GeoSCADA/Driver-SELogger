@@ -369,7 +369,7 @@ namespace IO.Swagger.Model
             }
 
             // FalseAlarmFilter (int?) maximum
-            if(this.FalseAlarmFilter > (int?)4294967300)
+            if(this.FalseAlarmFilter > 4294967300)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FalseAlarmFilter, must be a value less than or equal to 4294967300.", new [] { "FalseAlarmFilter" });
             }
@@ -381,7 +381,7 @@ namespace IO.Swagger.Model
             }
 
             // SampleInterval (int?) maximum
-            if(this.SampleInterval > (int?)4294967300)
+            if(this.SampleInterval > 4294967300)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SampleInterval, must be a value less than or equal to 4294967300.", new [] { "SampleInterval" });
             }

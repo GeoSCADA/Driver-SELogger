@@ -173,7 +173,9 @@ copy $(TargetDir)Microsoft.IdentityModel.Tokens.dll "C:\Program Files\Schneider 
 
 copy $(TargetDir)System.Buffers.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
 copy $(TargetDir)System.IdentityModel.Tokens.Jwt.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
-copy $(TargetDir)System.Net.Http.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
+
+rem don't need for .Net 4.8
+rem copy $(TargetDir)System.Net.Http.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
 
 copy $(TargetDir)System.Runtime.CompilerServices.Unsafe.dll "C:\Program Files\Schneider Electric\ClearSCADA\"
 </PostBuildEvent>

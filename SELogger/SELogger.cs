@@ -121,12 +121,6 @@ namespace SELogger
                         "The name of the organization (Leave blank to retrieve all available).",
                         8, 2, OPCProperty.Base + 111, Length = 80)]
         public String OrganizationName;
-
-        [Label("Maximum Days to Retrieve", 9, 1)]
-        [ConfigField("MaxRetrieveDays",
-                     "Maximum days to retrieve data.",
-                     9, 2, OPCProperty.Base + 112)]
-        public UInt32 MaxRetrieveDays = 28;
         
         [Label("Automatic Configure", 10, 1)]
         [ConfigField("AutoConfig",
@@ -441,9 +435,14 @@ namespace SELogger
 
 
         [DataField("Last Data Time",
-           "The date/time of the last retrieved value, values older than this will not be retrieved.",
+           "The date/time of the last retrieved value.",
            OPCProperty.Base + 97, ViewInfoTitle = "Last retrieved date")]
-        public DateTime LastDataTime = DateTime.UtcNow.AddDays(-366); // Default to a year ago, this is brought forward by the channel property MaxRetrieveDays.
+        public DateTime LastDataTime = DateTime.UtcNow.AddDays(-366); // Default to a year ago
+
+        [DataField("Last Sample Id",
+           "The API Id of the last retrieved value.",
+           OPCProperty.Base + 94, ViewInfoTitle = "Last sample Id")]
+        public long LastSampleId = 0; // Default to 0
 
         [DataField("Last Error",
                    "The text of the last error.",
@@ -512,12 +511,19 @@ namespace SELogger
 			}
             else if (Type == OPCProperty.SendRecUpdateLastDataTime)
             {
-                LastDataTime = (DateTime)Data;
+                object[] LastDataParams = (object[])Data;
+                LastDataTime = (DateTime)LastDataParams[0];
+                LastSampleId = (long)LastDataParams[1];
+
                 SetDataModified(true);
             }
             else if (Type == OPCProperty.SendRecGetLastDataTime)
             {
-                Reply = LastDataTime;
+                object[] LastDataParams = new object[2];
+                LastDataParams[0] = LastDataTime;
+                LastDataParams[1] = LastSampleId;
+
+                Reply = LastDataParams;
             }
             else
                 base.OnReceive(Type, Data, ref Reply);
@@ -735,6 +741,8 @@ namespace SELogger
         [Label("Type Name", 10, 3)]
         [ConfigField("LoggerTypeName", "Point Type Name", 10, 4, OPCProperty.Base + 91, Length = 25, DefaultOverride = true)]
         public string LoggerTypeName;
+
+        // Consider adding significant change deadband property here so that reports without a significant value change can be filtered
 
         // Group of configuration fields
         // Normally an attribute on the first config field of the group

@@ -181,7 +181,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>SamplerfidStoredSampleRFIDResponseCollection</returns>
-        SamplerfidStoredSampleRFIDResponseCollection SamplerfidGetSamplesRFIDByStream (int? streamId, string authorization, int? lastSampleId = null);
+        SamplerfidStoredSampleRFIDResponseCollection SamplerfidGetSamplesRFIDByStream (int? streamId, string authorization, long? lastSampleId = null);
 
         /// <summary>
         /// getSamplesRFIDByStream samplerfid
@@ -194,7 +194,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>ApiResponse of SamplerfidStoredSampleRFIDResponseCollection</returns>
-        ApiResponse<SamplerfidStoredSampleRFIDResponseCollection> SamplerfidGetSamplesRFIDByStreamWithHttpInfo (int? streamId, string authorization, int? lastSampleId = null);
+        ApiResponse<SamplerfidStoredSampleRFIDResponseCollection> SamplerfidGetSamplesRFIDByStreamWithHttpInfo (int? streamId, string authorization, long? lastSampleId = null);
         /// <summary>
         /// setBackfillSamplesRFIDBatch samplerfid
         /// </summary>
@@ -379,7 +379,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>Task of SamplerfidStoredSampleRFIDResponseCollection</returns>
-        System.Threading.Tasks.Task<SamplerfidStoredSampleRFIDResponseCollection> SamplerfidGetSamplesRFIDByStreamAsync (int? streamId, string authorization, int? lastSampleId = null);
+        System.Threading.Tasks.Task<SamplerfidStoredSampleRFIDResponseCollection> SamplerfidGetSamplesRFIDByStreamAsync (int? streamId, string authorization, long? lastSampleId = null);
 
         /// <summary>
         /// getSamplesRFIDByStream samplerfid
@@ -392,7 +392,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>Task of ApiResponse (SamplerfidStoredSampleRFIDResponseCollection)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SamplerfidStoredSampleRFIDResponseCollection>> SamplerfidGetSamplesRFIDByStreamAsyncWithHttpInfo (int? streamId, string authorization, int? lastSampleId = null);
+        System.Threading.Tasks.Task<ApiResponse<SamplerfidStoredSampleRFIDResponseCollection>> SamplerfidGetSamplesRFIDByStreamAsyncWithHttpInfo (int? streamId, string authorization, long? lastSampleId = null);
         /// <summary>
         /// setBackfillSamplesRFIDBatch samplerfid
         /// </summary>
@@ -1490,7 +1490,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>SamplerfidStoredSampleRFIDResponseCollection</returns>
-        public SamplerfidStoredSampleRFIDResponseCollection SamplerfidGetSamplesRFIDByStream (int? streamId, string authorization, int? lastSampleId = null)
+        public SamplerfidStoredSampleRFIDResponseCollection SamplerfidGetSamplesRFIDByStream (int? streamId, string authorization, long? lastSampleId = null)
         {
              ApiResponse<SamplerfidStoredSampleRFIDResponseCollection> localVarResponse = SamplerfidGetSamplesRFIDByStreamWithHttpInfo(streamId, authorization, lastSampleId);
              return localVarResponse.Data;
@@ -1504,7 +1504,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>ApiResponse of SamplerfidStoredSampleRFIDResponseCollection</returns>
-        public ApiResponse< SamplerfidStoredSampleRFIDResponseCollection > SamplerfidGetSamplesRFIDByStreamWithHttpInfo (int? streamId, string authorization, int? lastSampleId = null)
+        public ApiResponse< SamplerfidStoredSampleRFIDResponseCollection > SamplerfidGetSamplesRFIDByStreamWithHttpInfo (int? streamId, string authorization, long? lastSampleId = null)
         {
             // verify the required parameter 'streamId' is set
             if (streamId == null)
@@ -1571,7 +1571,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>Task of SamplerfidStoredSampleRFIDResponseCollection</returns>
-        public async System.Threading.Tasks.Task<SamplerfidStoredSampleRFIDResponseCollection> SamplerfidGetSamplesRFIDByStreamAsync (int? streamId, string authorization, int? lastSampleId = null)
+        public async System.Threading.Tasks.Task<SamplerfidStoredSampleRFIDResponseCollection> SamplerfidGetSamplesRFIDByStreamAsync (int? streamId, string authorization, long? lastSampleId = null)
         {
              ApiResponse<SamplerfidStoredSampleRFIDResponseCollection> localVarResponse = await SamplerfidGetSamplesRFIDByStreamAsyncWithHttpInfo(streamId, authorization, lastSampleId);
              return localVarResponse.Data;
@@ -1586,7 +1586,7 @@ namespace IO.Swagger.Api
         /// <param name="authorization">JWT used for authentication</param>
         /// <param name="lastSampleId">ID of the oldest sample from which to start returning samples (optional)</param>
         /// <returns>Task of ApiResponse (SamplerfidStoredSampleRFIDResponseCollection)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SamplerfidStoredSampleRFIDResponseCollection>> SamplerfidGetSamplesRFIDByStreamAsyncWithHttpInfo (int? streamId, string authorization, int? lastSampleId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<SamplerfidStoredSampleRFIDResponseCollection>> SamplerfidGetSamplesRFIDByStreamAsyncWithHttpInfo (int? streamId, string authorization, long? lastSampleId = null)
         {
             // verify the required parameter 'streamId' is set
             if (streamId == null)
