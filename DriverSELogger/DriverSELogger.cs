@@ -279,10 +279,34 @@ namespace DriverSELogger
 				}
 				catch (Exception e)
 				{
-					LogAndEvent("Channel problem getting sites: " + e.Message);
-					SetFailReason("Could not find sites.");
-					SetStatus(ServerStatus.Offline, "Cannot find sites");
-					return;
+					LogAndEvent("Channel problem getting devices: " + e.Message + " " + (e.InnerException != null ? e.InnerException.Message : ""));
+					// Some Cloud API configurations do not return any devices, but there may be sites with streams still.
+					// We could just fail here and stop processing (uncomment next 3 lines and remove what is below).
+
+					//SetFailReason("Could not find devices.");
+					//SetStatus(ServerStatus.Offline, "Cannot find devices");
+					//return;
+
+					// Alternatively we could make up devices from the available site data.
+					// And this is a substitute until we find out why the API does this.
+					devices = new DeviceStoredDeviceResponseCollection();
+					foreach (var site in sites)
+					{
+						StoredDeviceResponse NewDevice = new StoredDeviceResponse(
+							"No device AKID",
+							site.DisplayName,
+							"", "", "", 
+							site.Id, 
+							"", 
+							"No device Model", 
+							"No device serial", 
+							site.DisplayName, 
+							(int?)site.Id );
+
+						devices.Add(NewDevice);
+
+						LogAndEvent("Created internal device: " + site.DisplayName + " Id: " + site.Id.ToString());
+					}
 				}
 
 				if (sites != null && sites.Count > 0)
