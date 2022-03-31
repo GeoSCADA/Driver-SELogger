@@ -1299,7 +1299,7 @@ namespace DriverSELogger
 
         public bool Connect2Net(string user, string password, out ClearScada.Client.Simple.Connection connection, out ClearScada.Client.Advanced.IServer AdvConnection)
         {
-            var node = new ClearScada.Client.ServerNode(ClearScada.Client.ConnectionType.Standard, "127.0.0.1", 5481);
+            var node = new ClearScada.Client.ServerNode("127.0.0.1", 5481); // Connection type no longer needed
             connection = new ClearScada.Client.Simple.Connection("SELogger");
             try
             {
