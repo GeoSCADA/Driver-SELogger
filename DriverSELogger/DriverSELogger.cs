@@ -1299,21 +1299,23 @@ namespace DriverSELogger
 
         public bool Connect2Net(string user, string password, out ClearScada.Client.Simple.Connection connection, out ClearScada.Client.Advanced.IServer AdvConnection)
         {
-            var node = new ClearScada.Client.ServerNode(ClearScada.Client.ConnectionType.Standard, "127.0.0.1", 5481);
-            connection = new ClearScada.Client.Simple.Connection("SELogger");
-            try
-            {
-                connection.Connect(node);
-                AdvConnection = node.Connect("SELogger-Adv", false);
-            }
-            catch (CommunicationsException)
-            {
-                LogAndEvent("Unable to communicate with ClearSCADA server.");
-                AdvConnection = null;
-                return false;
-            }
+#pragma warning disable 612, 618
+			var node = new ClearScada.Client.ServerNode(ConnectionType.Standard, "127.0.0.1", 5481);
+			connection = new ClearScada.Client.Simple.Connection("SELogger");
+			try
+			{
+				connection.Connect(node);
+				AdvConnection = node.Connect("SELogger-Adv");
+			}
+			catch (CommunicationsException)
+			{
+				LogAndEvent("Unable to communicate with ClearSCADA server.");
+				AdvConnection = null;
+				return false;
+			}
+#pragma warning restore 612, 618
 
-            if (connection.IsConnected)
+			if (connection.IsConnected)
             {
                 Log("Connected to database.");
 
